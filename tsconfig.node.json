@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strict": true,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": ["vite.config.ts", "playwright.config.ts", "tests/**/*.ts", "e2e/**/*.ts", "src/lib/ics.ts", "src/types.ts"]
+}

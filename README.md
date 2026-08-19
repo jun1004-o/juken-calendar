@@ -15,11 +15,11 @@ npm run dev
 
 ## データの追加と監査
 
-正本は `data/collection-state.json`、イベント仕様は `data/event.schema.json` です。
+GitHub上の公開正本は `data/schools.json`、`data/events.json`、`data/change-history.json`、イベント仕様は `data/event.schema.json` です。監査前の候補・インシデント・個別カレンダー連携状態は非公開の運営ストアに置き、公開リポジトリへ入れません。
 
-1. School Data Agentが一次情報を確認し、必須メタデータを持つ `candidate` を追加する。
+1. School Data Agentが一次情報を確認し、非公開の運営ストアへ必須メタデータを持つ `candidate` を追加する。
 2. Data Auditor Agentが元情報、年度、日時、対象学年、申込期間、重複、矛盾を独立確認する。
-3. 確認完了時だけ `status: verified` と `verified_at` を設定する。
+3. 確認完了時だけ `status: verified` と `verified_at` を設定し、`data/events.json` へ反映する。
 4. `npm run generate:data` を実行する。
 5. `npm run check` を通す。
 

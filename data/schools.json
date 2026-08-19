@@ -1,0 +1,63 @@
+[
+  {
+    "id": "tohkatsu-jh",
+    "name": "千葉県立東葛飾中学校",
+    "official_sources": [
+      "https://cms1.chiba-c.ed.jp/tohkatsu-jh/",
+      "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/kenchu/index.html",
+      "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html"
+    ]
+  },
+  {
+    "id": "shibaura-kashiwa-jh",
+    "name": "芝浦工業大学柏中学校",
+    "official_sources": [
+      "https://www.ka.shibaura-it.ac.jp/admissions/",
+      "https://www.ka.shibaura-it.ac.jp/admissions/junior/"
+    ]
+  },
+  {
+    "id": "reitaku-jh",
+    "name": "麗澤中学校",
+    "official_sources": [
+      "https://www.hs.reitaku.jp/junior/info_j.html",
+      "https://www.hs.reitaku.jp/junior/application.html"
+    ]
+  },
+  {
+    "id": "meikei-jh",
+    "name": "茗溪学園中学校",
+    "official_sources": [
+      "https://meikei.ac.jp/admissions/junior/",
+      "https://meikei.ac.jp/post/",
+      "https://meikei.ac.jp/uploads/2026/06/158dbb6d12f1f02a5a3924ae25ec4812.pdf",
+      "https://meikei.ac.jp/post/15639/",
+      "https://meikei.ac.jp/post/15640/"
+    ]
+  },
+  {
+    "id": "ichikawa-jh",
+    "name": "市川中学校",
+    "official_sources": [
+      "https://www.ichigaku.ac.jp/exam-information/junior-information/",
+      "https://www.ichigaku.ac.jp/junior-exam/guideline/",
+      "https://www.ichigaku.ac.jp/wp-content/uploads/2026/06/2027%E4%B8%AD%E5%AD%A6%E5%8B%9F%E9%9B%86%E8%A6%81%E9%A0%85%EF%BE%98%EF%BD%B0%EF%BE%8C%EF%BE%9A%EF%BD%AF%EF%BE%84.pdf"
+    ]
+  },
+  {
+    "id": "toho-jh",
+    "name": "東邦大学付属東邦中学校",
+    "official_sources": [
+      "https://www.tohojh.toho-u.ac.jp/exam/briefing/briefing_jh.html",
+      "https://www.tohojh.toho-u.ac.jp/exam/020502.html",
+      "https://www.tohojh.toho-u.ac.jp/exam/ovohlk0000002xo1-att/vt5vv5000000051z.pdf"
+    ]
+  },
+  {
+    "id": "shiba-jh",
+    "name": "芝中学校",
+    "official_sources": [
+      "https://www.shiba.ac.jp/admissions/"
+    ]
+  }
+]

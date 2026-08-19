@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#175c52" />
+    <meta name="description" content="中学受験の日程を学校公式情報からまとめて確認し、カレンダーへ追加できます。" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <title>受験日程カレンダー</title>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow">学校公式情報だけを掲載</p>
+        <h1>受験日程を、<br />ひとつのカレンダーに。</h1>
+        <p class="hero__copy">志望校を選ぶだけ。説明会から合格発表まで、確認済みの日程をまとめます。</p>
+      </div>
+    </header>
+    <main id="app" class="shell" aria-live="polite">
+      <p class="loading">公式日程を読み込んでいます…</p>
+    </main>
+    <footer>日程は必ずリンク先の学校公式情報でもご確認ください。</footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

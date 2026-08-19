@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://juken-calendar.example/schemas/event.json",
+  "title": "Middle-school admission event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "school_id",
+    "title",
+    "category",
+    "starts_at",
+    "ends_at",
+    "registration_opens_at",
+    "registration_closes_at",
+    "target_grades",
+    "admission_year",
+    "source_url",
+    "source_type",
+    "retrieved_at",
+    "verified_at",
+    "status",
+    "confidence",
+    "change_note"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "school_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "category": {
+      "enum": ["briefing", "open_school", "festival", "application", "exam", "result", "enrollment", "other"]
+    },
+    "starts_at": { "type": "string", "format": "date-or-datetime" },
+    "ends_at": { "type": ["string", "null"], "format": "date-or-datetime" },
+    "registration_opens_at": { "type": ["string", "null"], "format": "date-or-datetime" },
+    "registration_closes_at": { "type": ["string", "null"], "format": "date-or-datetime" },
+    "target_grades": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1, "maximum": 6 },
+      "uniqueItems": true
+    },
+    "admission_year": { "type": "integer", "minimum": 2026, "maximum": 2100 },
+    "source_url": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "source_type": { "enum": ["official_web", "official_pdf", "municipal_web", "municipal_pdf"] },
+    "retrieved_at": { "type": "string", "format": "date-time" },
+    "verified_at": { "type": ["string", "null"], "format": "date-time" },
+    "status": { "enum": ["candidate", "verified", "quarantined", "cancelled"] },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "content_hash": { "type": ["string", "null"] },
+    "change_note": { "type": "string" },
+    "change_type": { "enum": ["new", "changed", "cancelled"] }
+  }
+}

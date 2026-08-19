@@ -1,0 +1,12 @@
+{
+  "name": "受験日程カレンダー",
+  "short_name": "受験日程",
+  "description": "中学受験家庭向けの公式日程タイムライン",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f5ef",
+  "theme_color": "#175c52",
+  "icons": [
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

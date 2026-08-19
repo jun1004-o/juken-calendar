@@ -1,0 +1,134 @@
+[
+  {
+    "id": "tohkatsu-jh:2027:application-window",
+    "school_id": "tohkatsu-jh",
+    "title": "入学願書提出期間",
+    "category": "application",
+    "starts_at": "2026-11-16",
+    "ends_at": "2026-11-18",
+    "registration_opens_at": null,
+    "registration_closes_at": null,
+    "target_grades": [
+      6
+    ],
+    "admission_year": 2027,
+    "source_url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html",
+    "source_type": "official_web",
+    "retrieved_at": "2026-08-19T12:20:00+09:00",
+    "verified_at": "2026-08-19T12:40:00+09:00",
+    "status": "verified",
+    "confidence": "high",
+    "content_hash": null,
+    "change_note": "Initial collection"
+  },
+  {
+    "id": "tohkatsu-jh:2027:first-exam",
+    "school_id": "tohkatsu-jh",
+    "title": "一次検査（適性検査）",
+    "category": "exam",
+    "starts_at": "2026-12-05",
+    "ends_at": "2026-12-05",
+    "registration_opens_at": null,
+    "registration_closes_at": null,
+    "target_grades": [
+      6
+    ],
+    "admission_year": 2027,
+    "source_url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html",
+    "source_type": "official_web",
+    "retrieved_at": "2026-08-19T12:20:00+09:00",
+    "verified_at": "2026-08-19T12:40:00+09:00",
+    "status": "verified",
+    "confidence": "high",
+    "content_hash": null,
+    "change_note": "Initial collection"
+  },
+  {
+    "id": "tohkatsu-jh:2027:first-result",
+    "school_id": "tohkatsu-jh",
+    "title": "一次検査結果発表",
+    "category": "result",
+    "starts_at": "2026-12-16",
+    "ends_at": "2026-12-16",
+    "registration_opens_at": null,
+    "registration_closes_at": null,
+    "target_grades": [
+      6
+    ],
+    "admission_year": 2027,
+    "source_url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html",
+    "source_type": "official_web",
+    "retrieved_at": "2026-08-19T12:20:00+09:00",
+    "verified_at": "2026-08-19T12:40:00+09:00",
+    "status": "verified",
+    "confidence": "high",
+    "content_hash": null,
+    "change_note": "Initial collection"
+  },
+  {
+    "id": "tohkatsu-jh:2027:documents-window",
+    "school_id": "tohkatsu-jh",
+    "title": "報告書・志願理由書等提出期間",
+    "category": "application",
+    "starts_at": "2027-01-08",
+    "ends_at": "2027-01-12",
+    "registration_opens_at": null,
+    "registration_closes_at": null,
+    "target_grades": [
+      6
+    ],
+    "admission_year": 2027,
+    "source_url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html",
+    "source_type": "official_web",
+    "retrieved_at": "2026-08-19T12:20:00+09:00",
+    "verified_at": "2026-08-19T12:40:00+09:00",
+    "status": "verified",
+    "confidence": "high",
+    "content_hash": null,
+    "change_note": "Initial collection"
+  },
+  {
+    "id": "tohkatsu-jh:2027:second-exam",
+    "school_id": "tohkatsu-jh",
+    "title": "二次検査（適性検査等）",
+    "category": "exam",
+    "starts_at": "2027-01-24",
+    "ends_at": "2027-01-24",
+    "registration_opens_at": null,
+    "registration_closes_at": null,
+    "target_grades": [
+      6
+    ],
+    "admission_year": 2027,
+    "source_url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html",
+    "source_type": "official_web",
+    "retrieved_at": "2026-08-19T12:20:00+09:00",
+    "verified_at": "2026-08-19T12:40:00+09:00",
+    "status": "verified",
+    "confidence": "high",
+    "content_hash": null,
+    "change_note": "Initial collection"
+  },
+  {
+    "id": "tohkatsu-jh:2027:final-result",
+    "school_id": "tohkatsu-jh",
+    "title": "二次検査結果発表",
+    "category": "result",
+    "starts_at": "2027-02-01",
+    "ends_at": "2027-02-01",
+    "registration_opens_at": null,
+    "registration_closes_at": null,
+    "target_grades": [
+      6
+    ],
+    "admission_year": 2027,
+    "source_url": "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html",
+    "source_type": "official_web",
+    "retrieved_at": "2026-08-19T12:20:00+09:00",
+    "verified_at": "2026-08-19T12:40:00+09:00",
+    "status": "verified",
+    "confidence": "high",
+    "content_hash": null,
+    "change_note": "Initial collection"
+  }
+]
