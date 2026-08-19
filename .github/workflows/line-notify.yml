@@ -1,0 +1,36 @@
+name: LINE governance notification
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  notify:
+    if: >-
+      github.actor == 'jun1004-o' &&
+      (github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.user.login == 'jun1004-o' &&
+      !github.event.issue.pull_request &&
+      (startsWith(github.event.issue.title, '[稟議]') ||
+      startsWith(github.event.issue.title, '[重大通知]') ||
+      startsWith(github.event.issue.title, '[経営報告]'))))
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Send fixed test or issue notification
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: node scripts/line-notify.mjs

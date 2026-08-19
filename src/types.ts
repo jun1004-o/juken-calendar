@@ -1,0 +1,30 @@
+export type EventCategory = 'briefing' | 'open_school' | 'festival' | 'application' | 'exam' | 'result' | 'enrollment' | 'other';
+export type EventStatus = 'candidate' | 'verified' | 'quarantined' | 'cancelled';
+
+export interface School {
+  id: string;
+  name: string;
+  official_sources: string[];
+}
+
+export interface AdmissionEvent {
+  id: string;
+  school_id: string;
+  title: string;
+  category: EventCategory;
+  starts_at: string;
+  ends_at: string | null;
+  registration_opens_at: string | null;
+  registration_closes_at: string | null;
+  target_grades: number[];
+  admission_year: number;
+  source_url: string;
+  source_type: 'official_web' | 'official_pdf' | 'municipal_web' | 'municipal_pdf';
+  retrieved_at: string;
+  verified_at: string | null;
+  status: EventStatus;
+  confidence: 'low' | 'medium' | 'high';
+  content_hash: string | null;
+  change_note: string;
+  change_type?: 'new' | 'changed' | 'cancelled';
+}
