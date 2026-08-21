@@ -28,3 +28,36 @@ export interface AdmissionEvent {
   change_note: string;
   change_type?: 'new' | 'changed' | 'cancelled';
 }
+
+export interface MockExamOrganizer {
+  id: string;
+  name: string;
+  official_sources: string[];
+}
+
+export interface MockExamEvent {
+  id: string;
+  organizer_id: string;
+  title: string;
+  category: 'mock_exam' | 'registration_open';
+  starts_at: string;
+  ends_at: string | null;
+  target_grades: number[];
+  admission_year: number;
+  source_url: string;
+  retrieved_at: string;
+  verified_at: string | null;
+  status: EventStatus;
+  confidence: 'low' | 'medium' | 'high';
+}
+
+export interface CalendarExportEvent {
+  id: string;
+  title: string;
+  owner_name: string;
+  starts_at: string;
+  ends_at: string | null;
+  source_url: string;
+  verified_at: string | null;
+  status: EventStatus;
+}
