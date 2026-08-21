@@ -1,0 +1,25 @@
+[
+  {
+    "id": "sapix",
+    "name": "SAPIX",
+    "official_sources": ["https://www.sapientica.com/application/mockexam/04/"]
+  },
+  {
+    "id": "yotsuya",
+    "name": "四谷大塚",
+    "official_sources": [
+      "https://www.yotsuyaotsuka.com/exam/schedule.php",
+      "https://www.yotsuyaotsuka.com/exam/exam.php?exam_name=kouritsu_hantei"
+    ]
+  },
+  {
+    "id": "onetes",
+    "name": "ONEテスト",
+    "official_sources": ["https://www.onetes.co.jp/"]
+  },
+  {
+    "id": "nichinoken",
+    "name": "日能研",
+    "official_sources": ["https://www.nichinoken.co.jp/moshi/lp/"]
+  }
+]

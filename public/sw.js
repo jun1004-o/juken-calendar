@@ -1,5 +1,12 @@
-const CACHE = 'juken-calendar-v1';
-const CORE = ['./', './manifest.webmanifest', './data/schools.json', './data/events.json'];
+const CACHE = 'juken-calendar-v2';
+const CORE = [
+  './',
+  './manifest.webmanifest',
+  './data/schools.json',
+  './data/events.json',
+  './data/mock-exam-organizers.json',
+  './data/mock-exam-events.json',
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

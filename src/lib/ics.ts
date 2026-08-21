@@ -1,4 +1,4 @@
-import type { AdmissionEvent, School } from '../types';
+import type { AdmissionEvent, CalendarExportEvent, School } from '../types';
 
 const CRLF = '\r\n';
 
@@ -39,13 +39,14 @@ function fold(line: string): string {
   return chunks.join(`${CRLF} `);
 }
 
-function eventLines(event: AdmissionEvent, school: School): string[] {
+function eventLines(event: CalendarExportEvent, cancelled: boolean): string[] {
   const lines = [
     'BEGIN:VEVENT',
     `UID:${escapeText(event.id)}@juken-calendar`,
     `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')}`,
-    `SUMMARY:${escapeText(`${school.name}｜${event.title}`)}`,
-    `DESCRIPTION:${escapeText(`学校公式情報: ${event.source_url}\n最終確認: ${event.verified_at ?? '未確認'}`)}`,
+    `SEQUENCE:${cancelled ? 1 : 0}`,
+    `SUMMARY:${escapeText(`${event.owner_name}｜${event.title}`)}`,
+    `DESCRIPTION:${escapeText(`公式情報: ${event.source_url}\n最終確認: ${event.verified_at ?? '未確認'}`)}`,
     `URL:${event.source_url}`,
   ];
 
@@ -57,20 +58,20 @@ function eventLines(event: AdmissionEvent, school: School): string[] {
     lines.push(`DTEND;TZID=Asia/Tokyo:${localDateTime(event.ends_at ?? event.starts_at)}`);
   }
 
-  if (event.change_type === 'cancelled' || event.status === 'cancelled') lines.push('STATUS:CANCELLED');
+  if (cancelled || event.status === 'cancelled') lines.push('STATUS:CANCELLED');
   lines.push('END:VEVENT');
   return lines;
 }
 
-export function generateIcs(events: AdmissionEvent[], schools: School[]): string {
-  const schoolMap = new Map(schools.map((school) => [school.id, school]));
+export function generateCalendarIcs(events: CalendarExportEvent[], mode: 'publish' | 'cancel' = 'publish'): string {
   const verified = events.filter((event) => event.status === 'verified' && event.verified_at);
+  const cancelled = mode === 'cancel';
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//Juken Calendar//Official School Schedule//JA',
     'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
+    `METHOD:${cancelled ? 'CANCEL' : 'PUBLISH'}`,
     'X-WR-CALNAME:中学受験日程',
     'X-WR-TIMEZONE:Asia/Tokyo',
     'BEGIN:VTIMEZONE',
@@ -84,10 +85,24 @@ export function generateIcs(events: AdmissionEvent[], schools: School[]): string
     'END:VTIMEZONE',
   ];
 
-  for (const event of verified) {
-    const school = schoolMap.get(event.school_id);
-    if (school) lines.push(...eventLines(event, school));
-  }
+  for (const event of verified) lines.push(...eventLines(event, cancelled));
   lines.push('END:VCALENDAR');
   return `${lines.map(fold).join(CRLF)}${CRLF}`;
+}
+
+export function generateIcs(events: AdmissionEvent[], schools: School[]): string {
+  const schoolMap = new Map(schools.map((school) => [school.id, school]));
+  return generateCalendarIcs(events.flatMap((event) => {
+    const school = schoolMap.get(event.school_id);
+    return school ? [{
+      id: event.id,
+      title: event.title,
+      owner_name: school.name,
+      starts_at: event.starts_at,
+      ends_at: event.ends_at,
+      source_url: event.source_url,
+      verified_at: event.verified_at,
+      status: event.status,
+    }] : [];
+  }));
 }

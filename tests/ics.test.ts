@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { generateIcs } from '../src/lib/ics';
-import type { AdmissionEvent, School } from '../src/types';
+import { generateCalendarIcs, generateIcs } from '../src/lib/ics';
+import type { AdmissionEvent, CalendarExportEvent, School } from '../src/types';
 
 const school: School = { id: 'school', name: 'テスト中学校', official_sources: ['https://example.edu/'] };
 const base: AdmissionEvent = {
@@ -32,5 +32,23 @@ describe('RFC 5545 export', () => {
     const ics = generateIcs([allDay], [school]);
     expect(ics).toContain('DTSTART;VALUE=DATE:20261001');
     expect(ics).toContain('DTEND;VALUE=DATE:20261002');
+  });
+
+  it('exports a cancellation file with the same stable UID', () => {
+    const calendarEvent: CalendarExportEvent = {
+      id: base.id,
+      title: base.title,
+      owner_name: school.name,
+      starts_at: base.starts_at,
+      ends_at: base.ends_at,
+      source_url: base.source_url,
+      verified_at: base.verified_at,
+      status: base.status,
+    };
+    const ics = generateCalendarIcs([calendarEvent], 'cancel');
+    expect(ics).toContain('METHOD:CANCEL');
+    expect(ics).toContain(`UID:${base.id}@juken-calendar`);
+    expect(ics).toContain('SEQUENCE:1');
+    expect(ics).toContain('STATUS:CANCELLED');
   });
 });

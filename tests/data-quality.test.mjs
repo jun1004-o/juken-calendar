@@ -5,6 +5,8 @@ import { createValidator, findDuplicateIds, hasInvalidRegistrationWindow, public
 const schools = JSON.parse(await readFile(new URL('../data/schools.json', import.meta.url), 'utf8'));
 const events = JSON.parse(await readFile(new URL('../data/events.json', import.meta.url), 'utf8'));
 const schema = JSON.parse(await readFile(new URL('../data/event.schema.json', import.meta.url), 'utf8'));
+const mockExamOrganizers = JSON.parse(await readFile(new URL('../data/mock-exam-organizers.json', import.meta.url), 'utf8'));
+const mockExamEvents = JSON.parse(await readFile(new URL('../data/mock-exam-events.json', import.meta.url), 'utf8'));
 const validate = createValidator(schema);
 
 describe('official data quality gate', () => {
@@ -40,5 +42,19 @@ describe('official data quality gate', () => {
       { status: 'verified', verified_at: '2026-08-20T06:00:00+09:00' },
     ]);
     expect(result).toHaveLength(1);
+  });
+
+  it('publishes only verified mock exams from a known organizer', () => {
+    const organizerIds = new Set(mockExamOrganizers.map((organizer) => organizer.id));
+    expect(mockExamOrganizers).toHaveLength(4);
+    expect(mockExamEvents).toHaveLength(28);
+    expect(findDuplicateIds(mockExamEvents)).toEqual([]);
+    for (const event of mockExamEvents) {
+      expect(organizerIds.has(event.organizer_id), event.id).toBe(true);
+      expect(event.admission_year, event.id).toBe(2027);
+      expect(event.status, event.id).toBe('verified');
+      expect(event.verified_at, event.id).toBeTruthy();
+      expect(event.source_url, event.id).toMatch(/^https:\/\//);
+    }
   });
 });

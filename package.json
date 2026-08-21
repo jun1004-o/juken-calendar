@@ -12,7 +12,7 @@
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:e2e": "npm run build && playwright test",
+    "test:e2e": "VITE_E2E_BYPASS=true npm run build && playwright test",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 {
   "name": "受験日程カレンダー",
   "short_name": "受験日程",
-  "description": "中学受験家庭向けの公式日程タイムライン",
+  "description": "中学受験の学校・模試を選んで管理する公式日程タイムライン",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f6f5ef",
