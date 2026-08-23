@@ -1,6 +1,6 @@
 import './style.css';
 import { generateCalendarIcs } from './lib/ics';
-import { normalizeSearchText } from './lib/search';
+import { matchesSchoolSearch } from './lib/search';
 import type {
   AdmissionEvent,
   CalendarExportEvent,
@@ -20,6 +20,8 @@ interface SourceOption {
   key: string;
   id: string;
   name: string;
+  name_reading?: string;
+  aliases?: string[];
   kind: SourceKind;
 }
 
@@ -194,7 +196,14 @@ async function start(): Promise<void> {
   const schoolMap = new Map(schools.map((school) => [school.id, school]));
   const organizerMap = new Map(organizers.map((organizer) => [organizer.id, organizer]));
   const sources: SourceOption[] = [
-    ...schools.map((school) => ({ key: `school:${school.id}`, id: school.id, name: school.name, kind: 'school' as const })),
+    ...schools.map((school) => ({
+      key: `school:${school.id}`,
+      id: school.id,
+      name: school.name,
+      name_reading: school.name_reading,
+      aliases: school.aliases,
+      kind: 'school' as const,
+    })),
     ...organizers.map((organizer) => ({ key: `mock:${organizer.id}`, id: organizer.id, name: organizer.name, kind: 'mock_exam' as const })),
   ];
   const allEvents = [
@@ -269,10 +278,13 @@ async function start(): Promise<void> {
   const actionEvents = (): TimelineEvent[] => filteredEvents().filter((event) => selectedEvents.has(event.id));
 
   const renderChoiceList = (kind: SourceKind, container: HTMLElement): void => {
-    const query = normalizeSearchText(schoolQuery);
     const visibleSources = sources.filter((source) =>
       source.kind === kind
-      && (kind !== 'school' || !query || normalizeSearchText(source.name).includes(query)));
+      && (kind !== 'school' || matchesSchoolSearch({
+        name: source.name,
+        name_reading: source.name_reading,
+        aliases: source.aliases,
+      }, schoolQuery)));
     container.innerHTML = visibleSources.length
       ? visibleSources.map((source) => `
         <label class="source-choice ${selectedSources.has(source.key) ? 'is-selected' : ''}">
