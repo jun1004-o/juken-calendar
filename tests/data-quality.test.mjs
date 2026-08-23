@@ -12,8 +12,8 @@ const pilotSchoolIds = [
   'tohkatsu-jh',
   'shibaura-kashiwa-jh',
   'reitaku-jh',
-  'meikei',
-  'ichikawa',
+  'meikei-jh',
+  'ichikawa-jh',
   'toho-jh',
   'shiba-jh',
 ];
