@@ -9,13 +9,13 @@ const mockExamOrganizers = JSON.parse(await readFile(new URL('../data/mock-exam-
 const mockExamEvents = JSON.parse(await readFile(new URL('../data/mock-exam-events.json', import.meta.url), 'utf8'));
 const validate = createValidator(schema);
 const pilotSchoolIds = [
-  'chiba-tohkatsu',
-  'sit-kashiwa',
+  'tohkatsu-jh',
+  'shibaura-kashiwa-jh',
   'reitaku',
   'meikei',
   'ichikawa',
-  'toho-toho',
-  'shiba',
+  'toho-jh',
+  'shiba-jh',
 ];
 
 describe('official data quality gate', () => {
