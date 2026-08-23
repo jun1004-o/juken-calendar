@@ -213,7 +213,7 @@ async function start(): Promise<void> {
         <div><span class="step">1</span><h2 id="source-title">学校・模試を選ぶ</h2></div>
         <span id="source-count" class="result-count"></span>
       </div>
-      <label class="school-search">学校名を検索<input id="school-search" type="search" inputmode="search" autocomplete="off" placeholder="例：東葛飾、芝、れいたく" /></label>
+      <label class="school-search">学校名を検索<input id="school-search" type="search" inputmode="search" autocomplete="off" placeholder="例：東葛飾、芝、麗澤" /></label>
       <div class="source-group">
         <div class="source-group__heading"><h3>学校</h3><button class="text-button source-toggle" data-kind="school" type="button">すべて選択</button></div>
         <div id="school-list" class="choice-grid"></div>
@@ -280,7 +280,7 @@ async function start(): Promise<void> {
           <span class="checkmark" aria-hidden="true">✓</span><span>${escapeHtml(source.name)}</span>
         </label>
       `).join('')
-      : '<div class="choice-empty">該当する学校がありません。別の名前や読み方で検索してください。</div>';
+      : '<div class="choice-empty">該当する学校がありません。別の学校名で検索してください。</div>';
   };
 
   const renderSources = (): void => {
