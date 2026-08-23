@@ -11,7 +11,7 @@ const validate = createValidator(schema);
 const pilotSchoolIds = [
   'tohkatsu-jh',
   'shibaura-kashiwa-jh',
-  'reitaku',
+  'reitaku-jh',
   'meikei',
   'ichikawa',
   'toho-jh',
