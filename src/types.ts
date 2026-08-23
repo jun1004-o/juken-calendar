@@ -4,6 +4,13 @@ export type EventStatus = 'candidate' | 'verified' | 'quarantined' | 'cancelled'
 export interface School {
   id: string;
   name: string;
+  name_reading?: string;
+  aliases?: string[];
+  prefecture?: string | null;
+  municipality?: string | null;
+  ownership?: string | null;
+  gender?: string | null;
+  secondary_education_type?: string | null;
   official_sources: string[];
 }
 

@@ -8,11 +8,22 @@ const schema = JSON.parse(await readFile(new URL('../data/event.schema.json', im
 const mockExamOrganizers = JSON.parse(await readFile(new URL('../data/mock-exam-organizers.json', import.meta.url), 'utf8'));
 const mockExamEvents = JSON.parse(await readFile(new URL('../data/mock-exam-events.json', import.meta.url), 'utf8'));
 const validate = createValidator(schema);
+const pilotSchoolIds = [
+  'tohkatsu-jh',
+  'shibaura-kashiwa-jh',
+  'reitaku-jh',
+  'meikei-jh',
+  'ichikawa-jh',
+  'toho-jh',
+  'shiba-jh',
+];
 
 describe('official data quality gate', () => {
-  it('contains exactly the seven pilot schools and unique IDs', () => {
-    expect(schools).toHaveLength(7);
-    expect(new Set(schools.map((school) => school.id)).size).toBe(7);
+  it('preserves the seven pilot schools while allowing catalog growth', () => {
+    const schoolIds = schools.map((school) => school.id);
+    expect(schools.length).toBeGreaterThanOrEqual(7);
+    expect(new Set(schoolIds).size).toBe(schools.length);
+    for (const pilotSchoolId of pilotSchoolIds) expect(schoolIds).toContain(pilotSchoolId);
   });
 
   it('validates every seeded event', () => {
