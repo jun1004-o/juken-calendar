@@ -1,5 +1,6 @@
 import './style.css';
 import { generateCalendarIcs } from './lib/ics';
+import { normalizeSearchText } from './lib/search';
 import type {
   AdmissionEvent,
   CalendarExportEvent,
@@ -204,6 +205,7 @@ async function start(): Promise<void> {
   const selectedEvents = loadSet(eventSelectionKey);
   let selectedCategory: TimelineCategory | 'all' = 'all';
   let fromDate = '';
+  let schoolQuery = '';
 
   app.innerHTML = `
     <section class="panel setup-panel" aria-labelledby="source-title">
@@ -211,6 +213,7 @@ async function start(): Promise<void> {
         <div><span class="step">1</span><h2 id="source-title">学校・模試を選ぶ</h2></div>
         <span id="source-count" class="result-count"></span>
       </div>
+      <label class="school-search">学校名を検索<input id="school-search" type="search" inputmode="search" autocomplete="off" placeholder="例：東葛飾、芝、麗澤" /></label>
       <div class="source-group">
         <div class="source-group__heading"><h3>学校</h3><button class="text-button source-toggle" data-kind="school" type="button">すべて選択</button></div>
         <div id="school-list" class="choice-grid"></div>
@@ -245,6 +248,7 @@ async function start(): Promise<void> {
   `;
 
   const schoolList = document.querySelector<HTMLElement>('#school-list')!;
+  const schoolSearch = document.querySelector<HTMLInputElement>('#school-search')!;
   const mockList = document.querySelector<HTMLElement>('#mock-list')!;
   const sourceCount = document.querySelector<HTMLElement>('#source-count')!;
   const timeline = document.querySelector<HTMLElement>('#timeline')!;
@@ -265,12 +269,18 @@ async function start(): Promise<void> {
   const actionEvents = (): TimelineEvent[] => filteredEvents().filter((event) => selectedEvents.has(event.id));
 
   const renderChoiceList = (kind: SourceKind, container: HTMLElement): void => {
-    container.innerHTML = sources.filter((source) => source.kind === kind).map((source) => `
-      <label class="source-choice ${selectedSources.has(source.key) ? 'is-selected' : ''}">
-        <input type="checkbox" value="${source.key}" ${selectedSources.has(source.key) ? 'checked' : ''} />
-        <span class="checkmark" aria-hidden="true">✓</span><span>${escapeHtml(source.name)}</span>
-      </label>
-    `).join('');
+    const query = normalizeSearchText(schoolQuery);
+    const visibleSources = sources.filter((source) =>
+      source.kind === kind
+      && (kind !== 'school' || !query || normalizeSearchText(source.name).includes(query)));
+    container.innerHTML = visibleSources.length
+      ? visibleSources.map((source) => `
+        <label class="source-choice ${selectedSources.has(source.key) ? 'is-selected' : ''}">
+          <input type="checkbox" value="${source.key}" ${selectedSources.has(source.key) ? 'checked' : ''} />
+          <span class="checkmark" aria-hidden="true">✓</span><span>${escapeHtml(source.name)}</span>
+        </label>
+      `).join('')
+      : '<div class="choice-empty">該当する学校がありません。別の学校名で検索してください。</div>';
   };
 
   const renderSources = (): void => {
@@ -326,6 +336,11 @@ async function start(): Promise<void> {
       allEvents.filter((event) => event.source_key === key).forEach((event) => selectedEvents.delete(event.id));
     }
   };
+
+  schoolSearch.addEventListener('input', () => {
+    schoolQuery = schoolSearch.value;
+    renderSources();
+  });
 
   for (const list of [schoolList, mockList]) list.addEventListener('change', (event) => {
     const input = event.target as HTMLInputElement;

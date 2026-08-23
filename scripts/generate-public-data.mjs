@@ -12,8 +12,16 @@ const mockExamEvents = JSON.parse(await readFile(resolve(root, 'data/mock-exam-e
 const schema = JSON.parse(await readFile(resolve(root, 'data/event.schema.json'), 'utf8'));
 const validate = createValidator(schema);
 
-if (!Array.isArray(schools) || schools.length !== 7) {
-  throw new Error(`Expected exactly seven pilot schools; found ${schools?.length ?? 0}.`);
+if (!Array.isArray(schools) || schools.length < 1) {
+  throw new Error('At least one school is required.');
+}
+const schoolIds = new Set();
+for (const school of schools) {
+  if (!school.id || !school.name || !Array.isArray(school.official_sources) || school.official_sources.length < 1) {
+    throw new Error(`Incomplete school record: ${school?.id ?? 'unknown'}.`);
+  }
+  if (schoolIds.has(school.id)) throw new Error(`Duplicate school ID: ${school.id}.`);
+  schoolIds.add(school.id);
 }
 
 for (const event of events) {

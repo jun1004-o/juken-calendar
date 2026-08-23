@@ -12,5 +12,5 @@
     "strict": true,
     "types": ["node", "vitest/globals"]
   },
-  "include": ["vite.config.ts", "playwright.config.ts", "tests/**/*.ts", "e2e/**/*.ts", "src/lib/ics.ts", "src/types.ts"]
+  "include": ["vite.config.ts", "playwright.config.ts", "tests/**/*.ts", "e2e/**/*.ts", "src/lib/ics.ts", "src/lib/search.ts", "src/types.ts"]
 }
