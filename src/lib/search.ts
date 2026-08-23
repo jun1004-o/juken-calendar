@@ -7,7 +7,7 @@ export function normalizeSearchText(value: string): string {
         : character;
     })
     .join('')
-    .replace(/[\s　・･ー―‐-]/g, '');
+    .replace(/[\s\u3000・･ー―‐-]/g, '');
 }
 
 export function matchesSchoolSearch(
