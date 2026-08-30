@@ -34,6 +34,15 @@ h1 { font-size: clamp(2rem, 10vw, 4rem); line-height: 1.18; letter-spacing: -.04
 .school-search { display: grid; gap: 7px; color: #5f706a; font-size: .76rem; font-weight: 800; margin: 4px 0 16px; }
 .school-search input { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: #243531; padding: 12px 14px; }
 .school-search input:focus { border-color: #78a79f; box-shadow: 0 0 0 3px rgba(23,92,82,.1); outline: none; }
+.school-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; background: #f6f7f3; border-radius: 14px; padding: 12px; }
+.school-filters label { display: grid; gap: 5px; color: #6a7874; font-size: .7rem; font-weight: 700; }
+.school-filters select { width: 100%; min-width: 0; border: 1px solid var(--line); background: #fff; border-radius: 9px; color: #263a35; padding: 9px 7px; }
+.school-filters label:last-child { grid-column: 1 / -1; }
+.selected-schools { margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.selected-school-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.selected-school-list button { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 99px; background: #eef7f4; color: var(--green-dark); font-size: .75rem; font-weight: 800; padding: 8px 10px; }
+.selected-school-list button span { font-size: 1rem; line-height: 1; }
+.selected-school-empty { color: #788681; font-size: .76rem; }
 .choice-empty { grid-column: 1 / -1; color: #6f7d79; background: #f6f7f3; border-radius: 12px; font-size: .82rem; line-height: 1.6; padding: 16px; text-align: center; }
 .source-group__heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; }
 .source-group__heading h3 { font-size: .82rem; letter-spacing: .08em; color: #6b7974; margin: 0; }
@@ -41,6 +50,8 @@ h1 { font-size: clamp(2rem, 10vw, 4rem); line-height: 1.18; letter-spacing: -.04
 .source-choice { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 12px; padding: 12px; font-size: .9rem; font-weight: 600; transition: .15s; }
 .source-choice input { position: absolute; opacity: 0; }
 .source-choice.is-selected { border-color: #78a79f; background: #eef7f4; color: var(--green-dark); }
+.source-choice strong, .source-choice small { display: block; }
+.source-choice small { color: #788681; font-size: .66rem; font-weight: 500; line-height: 1.45; margin-top: 3px; }
 .checkmark { display: grid; place-items: center; width: 22px; height: 22px; border: 2px solid #b7bdb7; border-radius: 7px; color: transparent; flex: 0 0 auto; }
 .is-selected .checkmark { background: var(--green); border-color: var(--green); color: white; }
 .privacy-note { color: #6f7d79; font-size: .73rem; margin: 13px 0 0; }
