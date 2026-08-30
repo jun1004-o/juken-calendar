@@ -11,7 +11,7 @@ test('school and mock-exam selection works at mobile width with add and remove e
   await page.getByLabel('学校名を検索').fill('浦和明の星');
   await page.getByLabel('都県').selectOption('埼玉県');
   await page.getByLabel('男女区分').selectOption('女子');
-  await page.getByLabel('日程').selectOption('has-events');
+  await page.locator('#schedule-filter').selectOption('has-events');
   const schoolGroup = page.locator('.source-group').filter({ has: page.getByRole('heading', { name: '学校' }) });
   await expect(schoolGroup.locator('.source-choice')).toHaveCount(1);
   await schoolGroup.getByText('浦和明の星女子中学校', { exact: true }).click();
