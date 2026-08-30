@@ -22,6 +22,12 @@ interface SourceOption {
   name: string;
   name_reading?: string;
   aliases?: string[];
+  prefecture?: string | null;
+  municipality?: string | null;
+  ownership?: string | null;
+  gender?: string | null;
+  secondary_education_type?: string | null;
+  verified_event_count?: number;
   kind: SourceKind;
 }
 
@@ -202,6 +208,12 @@ async function start(): Promise<void> {
       name: school.name,
       name_reading: school.name_reading,
       aliases: school.aliases,
+      prefecture: school.prefecture,
+      municipality: school.municipality,
+      ownership: school.ownership,
+      gender: school.gender,
+      secondary_education_type: school.secondary_education_type,
+      verified_event_count: school.verified_event_count,
       kind: 'school' as const,
     })),
     ...organizers.map((organizer) => ({ key: `mock:${organizer.id}`, id: organizer.id, name: organizer.name, kind: 'mock_exam' as const })),
@@ -215,6 +227,16 @@ async function start(): Promise<void> {
   let selectedCategory: TimelineCategory | 'all' = 'all';
   let fromDate = '';
   let schoolQuery = '';
+  let prefectureFilter = 'all';
+  let municipalityFilter = 'all';
+  let ownershipFilter = 'all';
+  let genderFilter = 'all';
+  let scheduleFilter = 'all';
+
+  const schoolSources = sources.filter((source) => source.kind === 'school');
+  const optionValues = (field: 'prefecture' | 'municipality' | 'ownership' | 'gender'): string[] =>
+    [...new Set(schoolSources.map((source) => source[field]).filter((value): value is string => Boolean(value)))].sort((a, b) => a.localeCompare(b, 'ja'));
+  const options = (values: string[]): string => values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join('');
 
   app.innerHTML = `
     <section class="panel setup-panel" aria-labelledby="source-title">
@@ -223,6 +245,17 @@ async function start(): Promise<void> {
         <span id="source-count" class="result-count"></span>
       </div>
       <label class="school-search">学校名を検索<input id="school-search" type="search" inputmode="search" autocomplete="off" placeholder="例：東葛飾、芝、麗澤" /></label>
+      <div class="school-filters" aria-label="学校の絞り込み">
+        <label>都県<select id="prefecture-filter"><option value="all">すべて</option>${options(optionValues('prefecture'))}</select></label>
+        <label>市区町村<select id="municipality-filter"><option value="all">すべて</option>${options(optionValues('municipality'))}</select></label>
+        <label>設置区分<select id="ownership-filter"><option value="all">すべて</option>${options(optionValues('ownership'))}</select></label>
+        <label>男女区分<select id="gender-filter"><option value="all">すべて</option>${options(optionValues('gender'))}</select></label>
+        <label>日程<select id="schedule-filter"><option value="all">すべて</option><option value="has-events">確認済み日程あり</option><option value="awaiting">公式発表待ち</option></select></label>
+      </div>
+      <section class="selected-schools" aria-labelledby="selected-school-title">
+        <div class="source-group__heading"><h3 id="selected-school-title">選択中の学校</h3><span id="selected-school-count" class="result-count"></span></div>
+        <div id="selected-school-list" class="selected-school-list"></div>
+      </section>
       <div class="source-group">
         <div class="source-group__heading"><h3>学校</h3><button class="text-button source-toggle" data-kind="school" type="button">すべて選択</button></div>
         <div id="school-list" class="choice-grid"></div>
@@ -258,6 +291,13 @@ async function start(): Promise<void> {
 
   const schoolList = document.querySelector<HTMLElement>('#school-list')!;
   const schoolSearch = document.querySelector<HTMLInputElement>('#school-search')!;
+  const prefectureSelect = document.querySelector<HTMLSelectElement>('#prefecture-filter')!;
+  const municipalitySelect = document.querySelector<HTMLSelectElement>('#municipality-filter')!;
+  const ownershipSelect = document.querySelector<HTMLSelectElement>('#ownership-filter')!;
+  const genderSelect = document.querySelector<HTMLSelectElement>('#gender-filter')!;
+  const scheduleSelect = document.querySelector<HTMLSelectElement>('#schedule-filter')!;
+  const selectedSchoolList = document.querySelector<HTMLElement>('#selected-school-list')!;
+  const selectedSchoolCount = document.querySelector<HTMLElement>('#selected-school-count')!;
   const mockList = document.querySelector<HTMLElement>('#mock-list')!;
   const sourceCount = document.querySelector<HTMLElement>('#source-count')!;
   const timeline = document.querySelector<HTMLElement>('#timeline')!;
@@ -277,19 +317,27 @@ async function start(): Promise<void> {
 
   const actionEvents = (): TimelineEvent[] => filteredEvents().filter((event) => selectedEvents.has(event.id));
 
-  const renderChoiceList = (kind: SourceKind, container: HTMLElement): void => {
-    const visibleSources = sources.filter((source) =>
-      source.kind === kind
-      && (kind !== 'school' || matchesSchoolSearch({
+  const visibleSchoolSources = (): SourceOption[] => schoolSources.filter((source) =>
+      matchesSchoolSearch({
         name: source.name,
         name_reading: source.name_reading,
         aliases: source.aliases,
-      }, schoolQuery)));
+      }, schoolQuery)
+      && (prefectureFilter === 'all' || source.prefecture === prefectureFilter)
+      && (municipalityFilter === 'all' || source.municipality === municipalityFilter)
+      && (ownershipFilter === 'all' || source.ownership === ownershipFilter)
+      && (genderFilter === 'all' || source.gender === genderFilter)
+      && (scheduleFilter === 'all'
+        || (scheduleFilter === 'has-events' && (source.verified_event_count ?? 0) > 0)
+        || (scheduleFilter === 'awaiting' && (source.verified_event_count ?? 0) === 0)));
+
+  const renderChoiceList = (kind: SourceKind, container: HTMLElement): void => {
+    const visibleSources = kind === 'school' ? visibleSchoolSources() : sources.filter((source) => source.kind === kind);
     container.innerHTML = visibleSources.length
       ? visibleSources.map((source) => `
         <label class="source-choice ${selectedSources.has(source.key) ? 'is-selected' : ''}">
           <input type="checkbox" value="${source.key}" ${selectedSources.has(source.key) ? 'checked' : ''} />
-          <span class="checkmark" aria-hidden="true">✓</span><span>${escapeHtml(source.name)}</span>
+          <span class="checkmark" aria-hidden="true">✓</span><span><strong>${escapeHtml(source.name)}</strong>${source.kind === 'school' ? `<small>${escapeHtml([source.prefecture, source.municipality, source.gender, source.ownership].filter(Boolean).join('・') || '属性確認中')} ／ ${(source.verified_event_count ?? 0) > 0 ? `確認済み日程 ${source.verified_event_count}件` : '公式発表待ち'}</small>` : ''}</span>
         </label>
       `).join('')
       : '<div class="choice-empty">該当する学校がありません。別の学校名で検索してください。</div>';
@@ -299,10 +347,15 @@ async function start(): Promise<void> {
     renderChoiceList('school', schoolList);
     renderChoiceList('mock_exam', mockList);
     sourceCount.textContent = `${selectedSources.size}件選択中`;
+    const selectedSchools = schoolSources.filter((source) => selectedSources.has(source.key));
+    selectedSchoolCount.textContent = `${selectedSchools.length}校`;
+    selectedSchoolList.innerHTML = selectedSchools.length
+      ? selectedSchools.map((source) => `<button type="button" data-source-key="${source.key}">${escapeHtml(source.name)}<span aria-hidden="true">×</span></button>`).join('')
+      : '<span class="selected-school-empty">まだ学校を選択していません。</span>';
     document.querySelectorAll<HTMLButtonElement>('.source-toggle').forEach((button) => {
       const kind = button.dataset.kind as SourceKind;
-      const kindSources = sources.filter((source) => source.kind === kind);
-      button.textContent = kindSources.every((source) => selectedSources.has(source.key)) ? 'すべて解除' : 'すべて選択';
+      const kindSources = kind === 'school' ? visibleSchoolSources() : sources.filter((source) => source.kind === kind);
+      button.textContent = kindSources.length > 0 && kindSources.every((source) => selectedSources.has(source.key)) ? 'すべて解除' : 'すべて選択';
     });
   };
 
@@ -353,6 +406,25 @@ async function start(): Promise<void> {
     schoolQuery = schoolSearch.value;
     renderSources();
   });
+  for (const select of [prefectureSelect, municipalitySelect, ownershipSelect, genderSelect, scheduleSelect]) {
+    select.addEventListener('change', () => {
+      prefectureFilter = prefectureSelect.value;
+      municipalityFilter = municipalitySelect.value;
+      ownershipFilter = ownershipSelect.value;
+      genderFilter = genderSelect.value;
+      scheduleFilter = scheduleSelect.value;
+      renderSources();
+    });
+  }
+  selectedSchoolList.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-source-key]');
+    if (!button) return;
+    setSource(button.dataset.sourceKey!, false);
+    saveSet(sourceSelectionKey, selectedSources);
+    saveSet(eventSelectionKey, selectedEvents);
+    renderSources();
+    renderTimeline();
+  });
 
   for (const list of [schoolList, mockList]) list.addEventListener('change', (event) => {
     const input = event.target as HTMLInputElement;
@@ -366,7 +438,7 @@ async function start(): Promise<void> {
 
   document.querySelectorAll<HTMLButtonElement>('.source-toggle').forEach((button) => button.addEventListener('click', () => {
     const kind = button.dataset.kind as SourceKind;
-    const kindSources = sources.filter((source) => source.kind === kind);
+    const kindSources = kind === 'school' ? visibleSchoolSources() : sources.filter((source) => source.kind === kind);
     const select = !kindSources.every((source) => selectedSources.has(source.key));
     kindSources.forEach((source) => setSource(source.key, select));
     saveSet(sourceSelectionKey, selectedSources);
