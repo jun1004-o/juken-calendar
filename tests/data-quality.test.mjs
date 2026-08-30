@@ -24,6 +24,13 @@ describe('official data quality gate', () => {
     expect(schools.length).toBeGreaterThanOrEqual(7);
     expect(new Set(schoolIds).size).toBe(schools.length);
     for (const pilotSchoolId of pilotSchoolIds) expect(schoolIds).toContain(pilotSchoolId);
+    expect(schools.length).toBeGreaterThanOrEqual(31);
+    for (const school of schools) {
+      expect(school.monitoring_status, school.id).toBe('verified');
+      expect(school.verified_event_count, school.id).toBeGreaterThanOrEqual(0);
+      expect(school.official_sources.length, school.id).toBeGreaterThan(0);
+      expect(JSON.stringify(school), school.id).not.toMatch(/candidate|quarantined|incident|event_map|registration_map/);
+    }
   });
 
   it('validates every seeded event', () => {
@@ -53,6 +60,8 @@ describe('official data quality gate', () => {
       { status: 'verified', verified_at: '2026-08-20T06:00:00+09:00' },
     ]);
     expect(result).toHaveLength(1);
+    expect(events.length).toBeGreaterThanOrEqual(107);
+    expect(events.every((event) => event.status === 'verified' && event.verified_at)).toBe(true);
   });
 
   it('publishes only verified mock exams from a known organizer', () => {
