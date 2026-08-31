@@ -11,6 +11,9 @@ export interface School {
   ownership?: string | null;
   gender?: string | null;
   secondary_education_type?: string | null;
+  monitoring_status?: 'verified';
+  verified_event_count?: number;
+  last_verified_at?: string | null;
   official_sources: string[];
 }
 

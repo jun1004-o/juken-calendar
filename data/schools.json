@@ -2,62 +2,594 @@
   {
     "id": "tohkatsu-jh",
     "name": "千葉県立東葛飾中学校",
+    "aliases": [],
+    "prefecture": "千葉県",
+    "municipality": "柏市",
+    "ownership": "公立",
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 6,
+    "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
       "https://cms1.chiba-c.ed.jp/tohkatsu-jh/",
       "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/kenchu/index.html",
-      "https://www.pref.chiba.lg.jp/kyouiku/shidou/kenchuu/r9ketteiyoukou.html"
+      "https://cms1.chiba-c.ed.jp/tohkatsu-jh/16b66bcf36383e451ed15511aab457c9"
     ]
   },
   {
     "id": "shibaura-kashiwa-jh",
     "name": "芝浦工業大学柏中学校",
+    "aliases": [],
+    "prefecture": "千葉県",
+    "municipality": "柏市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 6,
+    "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.ka.shibaura-it.ac.jp/admissions/",
-      "https://www.ka.shibaura-it.ac.jp/admissions/junior/"
+      "https://www.ka.shibaura-it.ac.jp/admissions/junior/",
+      "https://www.ka.shibaura-it.ac.jp/guidance/"
     ]
   },
   {
     "id": "reitaku-jh",
     "name": "麗澤中学校",
+    "aliases": [],
+    "prefecture": "千葉県",
+    "municipality": "柏市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 13,
+    "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
       "https://www.hs.reitaku.jp/junior/info_j.html",
-      "https://www.hs.reitaku.jp/junior/application.html"
+      "https://www.hs.reitaku.jp/about/overview.html"
     ]
   },
   {
     "id": "meikei-jh",
     "name": "茗溪学園中学校",
+    "aliases": [],
+    "prefecture": "茨城県",
+    "municipality": "つくば市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 2,
+    "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
       "https://meikei.ac.jp/admissions/junior/",
-      "https://meikei.ac.jp/post/",
-      "https://meikei.ac.jp/uploads/2026/06/158dbb6d12f1f02a5a3924ae25ec4812.pdf",
-      "https://meikei.ac.jp/post/15639/",
-      "https://meikei.ac.jp/post/15640/"
+      "https://meikei.ac.jp/"
     ]
   },
   {
     "id": "ichikawa-jh",
     "name": "市川中学校",
+    "aliases": [],
+    "prefecture": "千葉県",
+    "municipality": "市川市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 6,
+    "last_verified_at": "2026-08-28T06:00:20+09:00",
     "official_sources": [
-      "https://www.ichigaku.ac.jp/exam-information/junior-information/",
       "https://www.ichigaku.ac.jp/junior-exam/guideline/",
-      "https://www.ichigaku.ac.jp/wp-content/uploads/2026/06/2027%E4%B8%AD%E5%AD%A6%E5%8B%9F%E9%9B%86%E8%A6%81%E9%A0%85%EF%BE%98%EF%BD%B0%EF%BE%8C%EF%BE%9A%EF%BD%AF%EF%BE%84.pdf"
+      "https://www.ichigaku.ac.jp/",
+      "https://www.ichigaku.ac.jp/history/"
     ]
   },
   {
     "id": "toho-jh",
     "name": "東邦大学付属東邦中学校",
+    "aliases": [],
+    "prefecture": "千葉県",
+    "municipality": "習志野市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 7,
+    "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.tohojh.toho-u.ac.jp/exam/briefing/briefing_jh.html",
       "https://www.tohojh.toho-u.ac.jp/exam/020502.html",
-      "https://www.tohojh.toho-u.ac.jp/exam/ovohlk0000002xo1-att/vt5vv5000000051z.pdf"
+      "https://www.tohojh.toho-u.ac.jp/"
     ]
   },
   {
     "id": "shiba-jh",
     "name": "芝中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "港区",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.shiba.ac.jp/admissions/"
+      "https://www.shiba.ac.jp/admissions/",
+      "https://www.shiba.ac.jp/introduction/",
+      "https://www.shiba.ac.jp/access/"
+    ]
+  },
+  {
+    "id": "shibumaku-jh",
+    "name": "渋谷教育学園幕張中学校",
+    "aliases": [],
+    "prefecture": "千葉県",
+    "municipality": "千葉市美浜区",
+    "ownership": null,
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 9,
+    "last_verified_at": "2026-08-24T07:29:03+09:00",
+    "official_sources": [
+      "https://www.shibumaku.jp/",
+      "https://www.shibumaku.jp/admissions/youkou-2-2/junior/",
+      "https://www.shibumaku.jp/outline/access/",
+      "https://www.shibumaku.jp/wp-content/uploads/2026/07/2027jryoukou.pdf"
+    ]
+  },
+  {
+    "id": "showa-shuei-jh",
+    "name": "昭和学院秀英中学校",
+    "aliases": [
+      "秀英"
+    ],
+    "prefecture": "千葉県",
+    "municipality": "千葉市美浜区",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-25T07:30:01+09:00",
+    "official_sources": [
+      "https://www.showa-shuei.ed.jp/",
+      "https://www.showa-shuei.ed.jp/prospective_junior/"
+    ]
+  },
+  {
+    "id": "senshu-matsudo-jh",
+    "name": "専修大学松戸中学校",
+    "aliases": [
+      "専大松戸",
+      "専松"
+    ],
+    "prefecture": "千葉県",
+    "municipality": "松戸市",
+    "ownership": "私立",
+    "gender": null,
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 1,
+    "last_verified_at": "2026-08-25T07:30:01+09:00",
+    "official_sources": [
+      "https://www.senshu-u-matsudo.ed.jp/",
+      "https://www.senshu-u-matsudo.ed.jp/access.html",
+      "https://www.senshu-u-matsudo.ed.jp/about/features.html",
+      "https://www.senshu-u-matsudo.ed.jp/news/nid00000252.html",
+      "https://www.senshu-u-matsudo.ed.jp/junior/examination/",
+      "https://www.senshu-u-matsudo.ed.jp/junior/examination/setsumeikai.html"
+    ]
+  },
+  {
+    "id": "edotori-jh",
+    "name": "江戸川学園取手中・高等学校",
+    "aliases": [
+      "江戸取"
+    ],
+    "prefecture": "茨城県",
+    "municipality": "取手市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": "中高六か年一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-25T07:30:01+09:00",
+    "official_sources": [
+      "https://www2.e-t.ed.jp/",
+      "https://www2.e-t.ed.jp/examinee/",
+      "https://www2.e-t.ed.jp/about-edotori/",
+      "https://www2.e-t.ed.jp/about-examination/requirements/",
+      "https://z145.e-t.ed.jp/2019/kinenkouwa/",
+      "https://www2.e-t.ed.jp/wp-content/uploads/2026/07/cd2695ea25a3e3075cb68d5f1f0124c1.pdf"
+    ]
+  },
+  {
+    "id": "kaisei-jh",
+    "name": "開成中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "荒川区",
+    "ownership": null,
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 3,
+    "last_verified_at": "2026-08-27T07:31:53+09:00",
+    "official_sources": [
+      "https://kaiseigakuen.jp/",
+      "https://kaiseigakuen.jp/about/access/",
+      "https://kaiseigakuen.jp/admission/junior-high-school/"
+    ]
+  },
+  {
+    "id": "waseda-jh",
+    "name": "早稲田中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "新宿区",
+    "ownership": null,
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 7,
+    "last_verified_at": "2026-08-27T07:31:53+09:00",
+    "official_sources": [
+      "https://www.waseda-h.ed.jp/",
+      "https://www.waseda-h.ed.jp/access/",
+      "https://www.waseda-h.ed.jp/exam/overview/",
+      "https://www.waseda-h.ed.jp/exam/application/"
+    ]
+  },
+  {
+    "id": "seiko-jh",
+    "name": "聖光学院中学校",
+    "aliases": [],
+    "prefecture": "神奈川県",
+    "municipality": "横浜市",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-28T07:29:43+09:00",
+    "official_sources": [
+      "https://www.seiko.ac.jp/",
+      "https://sites.google.com/seiko.ac.jp/briefing"
+    ]
+  },
+  {
+    "id": "asano-jh",
+    "name": "浅野中学校",
+    "aliases": [],
+    "prefecture": "神奈川県",
+    "municipality": "横浜市",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": "併設型中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-28T07:29:43+09:00",
+    "official_sources": [
+      "https://www.asano.ed.jp/",
+      "https://www.asano.ed.jp/about/inquire/",
+      "https://www.asano.ed.jp/examination/application/"
+    ]
+  },
+  {
+    "id": "sakae-higashi-jh",
+    "name": "栄東中学校",
+    "aliases": [],
+    "prefecture": "埼玉県",
+    "municipality": "さいたま市",
+    "ownership": "私立",
+    "gender": null,
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-28T07:29:43+09:00",
+    "official_sources": [
+      "https://www.sakaehigashi.ed.jp/",
+      "https://www.sakaehigashi.ed.jp/about/history.html",
+      "https://www.sakaehigashi.ed.jp/exam/j_examination.html"
+    ]
+  },
+  {
+    "id": "kaichi-jh",
+    "name": "開智中学校",
+    "aliases": [],
+    "prefecture": "埼玉県",
+    "municipality": "さいたま市",
+    "ownership": "私立",
+    "gender": "共学",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-28T07:29:43+09:00",
+    "official_sources": [
+      "https://ikkanbu.kaichigakuen.ed.jp/",
+      "https://ikkanbu.kaichigakuen.ed.jp/access/",
+      "https://ikkanbu.kaichigakuen.ed.jp/blog/ar2027-1/",
+      "https://ikkanbu.kaichigakuen.ed.jp/wp-content/uploads/2026/06/%E5%85%A5%E8%A9%A6%E6%A6%82%E8%A6%812027%EF%BC%88%E7%A2%BA%E5%AE%9A%E7%89%88%EF%BC%89ver.2.pdf"
+    ]
+  },
+  {
+    "id": "azabu-jh",
+    "name": "麻布中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "港区",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-29T07:32:28+09:00",
+    "official_sources": [
+      "https://www.azabu-jh.ed.jp/",
+      "https://www.azabu-jh.ed.jp/access/",
+      "https://www.azabu-jh.ed.jp/education/"
+    ]
+  },
+  {
+    "id": "hongo-jh",
+    "name": "本郷中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "豊島区",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-29T07:32:28+09:00",
+    "official_sources": [
+      "https://www.hongo.ed.jp/",
+      "https://www.hongo.ed.jp/about/",
+      "https://www.hongo.ed.jp/admission/events/"
+    ]
+  },
+  {
+    "id": "eiko-jh",
+    "name": "栄光学園中学校",
+    "aliases": [],
+    "prefecture": "神奈川県",
+    "municipality": "鎌倉市",
+    "ownership": "私立",
+    "gender": null,
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-29T07:32:28+09:00",
+    "official_sources": [
+      "https://www.eiko.ed.jp/",
+      "https://www.eiko.ed.jp/access/index.html",
+      "https://www.eiko.ed.jp/exam/index.html"
+    ]
+  },
+  {
+    "id": "rikkyo-niiza-jh",
+    "name": "立教新座中学校",
+    "aliases": [],
+    "prefecture": "埼玉県",
+    "municipality": "新座市",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 12,
+    "last_verified_at": "2026-08-29T07:32:28+09:00",
+    "official_sources": [
+      "https://niiza.rikkyo.ac.jp/index.html",
+      "https://niiza.rikkyo.ac.jp/access/index.html",
+      "https://niiza.rikkyo.ac.jp/admissions/juniorj.html"
+    ]
+  },
+  {
+    "id": "musashi-jh",
+    "name": "武蔵高等学校中学校",
+    "aliases": [
+      "武蔵中学校"
+    ],
+    "prefecture": "東京都",
+    "municipality": "練馬区",
+    "ownership": "私立",
+    "gender": "男子",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.musashi.ed.jp/index.html",
+      "https://www.musashi.ed.jp/about/index.html",
+      "https://www.musashi.ed.jp/access/index.html",
+      "https://www.musashi.ed.jp/admission/index.html"
+    ]
+  },
+  {
+    "id": "komaba-toho-jh",
+    "name": "駒場東邦中学校",
+    "aliases": [
+      "駒場東邦"
+    ],
+    "prefecture": "東京都",
+    "municipality": "世田谷区",
+    "ownership": null,
+    "gender": null,
+    "secondary_education_type": "完全中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.komabajh.toho-u.ac.jp/",
+      "https://www.komabajh.toho-u.ac.jp/examination/index2.html",
+      "https://www.komabajh.toho-u.ac.jp/examination/32826/shutugannnyuusi.html"
+    ]
+  },
+  {
+    "id": "kaijo-jh",
+    "name": "海城中学校",
+    "aliases": [
+      "海城"
+    ],
+    "prefecture": "東京都",
+    "municipality": "新宿区",
+    "ownership": null,
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 11,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.kaijo.ed.jp/",
+      "https://www.kaijo.ed.jp/access",
+      "https://www.kaijo.ed.jp/admission/general",
+      "https://www.kaijo.ed.jp/admission/from-abroad"
+    ]
+  },
+  {
+    "id": "tsukukoma-jh",
+    "name": "筑波大学附属駒場中学校",
+    "aliases": [
+      "筑駒"
+    ],
+    "prefecture": "東京都",
+    "municipality": "世田谷区",
+    "ownership": null,
+    "gender": null,
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.komaba-s.tsukuba.ac.jp/",
+      "https://www.komaba-s.tsukuba.ac.jp/access/",
+      "https://www.komaba-s.tsukuba.ac.jp/admission/"
+    ]
+  },
+  {
+    "id": "oin-jh",
+    "name": "桜蔭中学校",
+    "aliases": [
+      "桜蔭学園"
+    ],
+    "prefecture": "東京都",
+    "municipality": "文京区",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 4,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.oin.ed.jp/",
+      "https://www.oin.ed.jp/access/",
+      "https://www.oin.ed.jp/admission/summary/",
+      "https://www.oin.ed.jp/admission/briefing/"
+    ]
+  },
+  {
+    "id": "joshi-gakuin-jh",
+    "name": "女子学院中学校",
+    "aliases": [
+      "JG"
+    ],
+    "prefecture": "東京都",
+    "municipality": "千代田区",
+    "ownership": "私立",
+    "gender": "女子",
+    "secondary_education_type": "完全中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 3,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.joshigakuin.ed.jp/",
+      "https://www.joshigakuin.ed.jp/access/",
+      "https://www.joshigakuin.ed.jp/exam/examination/"
+    ]
+  },
+  {
+    "id": "toshimaoka-jh",
+    "name": "豊島岡女子学園中学校",
+    "aliases": [
+      "豊島岡"
+    ],
+    "prefecture": "東京都",
+    "municipality": "豊島区",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-30T07:27:12+09:00",
+    "official_sources": [
+      "https://www.toshimagaoka.ed.jp/",
+      "https://www.toshimagaoka.ed.jp/about/outline/",
+      "https://www.toshimagaoka.ed.jp/access/",
+      "https://www.toshimagaoka.ed.jp/admission/"
+    ]
+  },
+  {
+    "id": "shirayuri-jh",
+    "name": "白百合学園中学校",
+    "aliases": [
+      "白百合学園中学高等学校"
+    ],
+    "prefecture": "東京都",
+    "municipality": "千代田区",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": "併設型中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 8,
+    "last_verified_at": "2026-08-31T07:30:07+09:00",
+    "official_sources": [
+      "https://www.shirayuri.ed.jp/top.html",
+      "https://www.shirayuri.ed.jp/outline.html",
+      "https://www.shirayuri.ed.jp/access.html",
+      "https://www.shirayuri.ed.jp/examinee/2027_shirayuri_guide/pageindices/index42.html"
+    ]
+  },
+  {
+    "id": "urawa-akenohoshi-jh",
+    "name": "浦和明の星女子中学校",
+    "aliases": [
+      "浦和明の星女子中学・高等学校"
+    ],
+    "prefecture": "埼玉県",
+    "municipality": "さいたま市緑区",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": "中高一貫",
+    "monitoring_status": "verified",
+    "verified_event_count": 9,
+    "last_verified_at": "2026-08-31T07:30:07+09:00",
+    "official_sources": [
+      "https://www.urawa-akenohoshi.ed.jp/",
+      "https://www.urawa-akenohoshi.ed.jp/access/",
+      "https://www.urawa-akenohoshi.ed.jp/admission/admission_summary/"
+    ]
+  },
+  {
+    "id": "keio-futsuu-jh",
+    "name": "慶應義塾普通部",
+    "aliases": [
+      "普通部"
+    ],
+    "prefecture": "神奈川県",
+    "municipality": "横浜市港北区",
+    "ownership": null,
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-31T07:30:07+09:00",
+    "official_sources": [
+      "https://www.kf.keio.ac.jp/",
+      "https://www.kf.keio.ac.jp/access/",
+      "https://www.kf.keio.ac.jp/admission/examination/"
     ]
   }
 ]

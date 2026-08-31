@@ -1,17 +1,12 @@
 [
   {
-    "at": "2026-08-19T12:20:00+09:00",
-    "actor": "Work CEO / initial School Data Agent run",
-    "summary": "Created seven-school monitoring registry and six candidate events for the 2027 East Katsushika admission process."
-  },
-  {
     "at": "2026-08-19T12:40:00+09:00",
     "actor": "Data Auditor Agent / independent official-source audit",
-    "summary": "Verified all six East Katsushika 2027 admission events against the Chiba Prefectural Board of Education page updated 2026-07-22; cleared the audit queue."
+    "summary": "Published six independently verified East Katsushika 2027 admission events using the Chiba Prefectural Board of Education information updated 2026-07-22."
   },
   {
-    "at": "2026-08-20T06:00:00+09:00",
-    "actor": "School Data Agent / daily official-source collection",
-    "summary": "Revisited all configured official sources, retained the six verified East Katsushika records unchanged, added 44 future 2026 event and 2027 admission candidates for Shibaura Kashiwa, Reitaku, Meikei, Ichikawa, Toho and Shiba to the audit queue, and recorded one Toho event-source transition incident."
+    "at": "2026-08-31T08:31:57+09:00",
+    "actor": "CEO / weekly operations review",
+    "summary": "Published the sanitized verified catalog from the audited operating state: 31 schools and 107 school events. Internal review records, personal data and calendar integration identifiers were excluded."
   }
 ]
