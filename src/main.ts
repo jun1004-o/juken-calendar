@@ -244,20 +244,28 @@ async function start(): Promise<void> {
         <div><span class="step">1</span><h2 id="source-title">学校・模試を選ぶ</h2></div>
         <span id="source-count" class="result-count"></span>
       </div>
-      <label class="school-search">学校名を検索<input id="school-search" type="search" inputmode="search" autocomplete="off" placeholder="例：東葛飾、芝、麗澤" /></label>
-      <div class="school-filters" aria-label="学校の絞り込み">
-        <label>都県<select id="prefecture-filter"><option value="all">すべて</option>${options(optionValues('prefecture'))}</select></label>
-        <label>市区町村<select id="municipality-filter"><option value="all">すべて</option>${options(optionValues('municipality'))}</select></label>
-        <label>設置区分<select id="ownership-filter"><option value="all">すべて</option>${options(optionValues('ownership'))}</select></label>
-        <label>男女区分<select id="gender-filter"><option value="all">すべて</option>${options(optionValues('gender'))}</select></label>
-        <label>日程<select id="schedule-filter"><option value="all">すべて</option><option value="has-events">確認済み日程あり</option><option value="awaiting">公式発表待ち</option></select></label>
+      <div class="catalog-summary">
+        <strong>${schoolSources.length}校を掲載</strong>
+        <span>公式確認済みの学校だけを表示しています</span>
       </div>
+      <label class="school-search"><span>学校名で探す</span><input id="school-search" type="search" inputmode="search" autocomplete="off" placeholder="学校名・別名を入力（例：東葛飾、専大松戸）" /><small>入力すると候補がすぐ絞られます</small></label>
+      <details class="filter-drawer">
+        <summary>地域・学校の種類で絞り込む</summary>
+        <div class="school-filters" aria-label="学校の絞り込み">
+          <label>都県<select id="prefecture-filter"><option value="all">すべて</option>${options(optionValues('prefecture'))}</select></label>
+          <label>市区町村<select id="municipality-filter"><option value="all">すべて</option>${options(optionValues('municipality'))}</select></label>
+          <label>設置区分<select id="ownership-filter"><option value="all">すべて</option>${options(optionValues('ownership'))}</select></label>
+          <label>男女区分<select id="gender-filter"><option value="all">すべて</option>${options(optionValues('gender'))}</select></label>
+          <label>公開日程<select id="schedule-filter"><option value="all">すべて</option><option value="has-events">確認済み日程あり</option><option value="no-events">確認済み日程なし</option></select></label>
+        </div>
+        <button id="clear-school-filters" class="clear-filter-button" type="button">検索・絞り込みをリセット</button>
+      </details>
       <section class="selected-schools" aria-labelledby="selected-school-title">
         <div class="source-group__heading"><h3 id="selected-school-title">選択中の学校</h3><span id="selected-school-count" class="result-count"></span></div>
         <div id="selected-school-list" class="selected-school-list"></div>
       </section>
-      <div class="source-group">
-        <div class="source-group__heading"><h3>学校</h3><button class="text-button source-toggle" data-kind="school" type="button">すべて選択</button></div>
+      <div class="source-group school-results">
+        <div class="source-group__heading"><div><h3>学校</h3><span id="school-result-count" class="result-count"></span></div><button class="text-button source-toggle" data-kind="school" type="button">表示中をすべて選択</button></div>
         <div id="school-list" class="choice-grid"></div>
       </div>
       <div class="source-group">
@@ -281,8 +289,8 @@ async function start(): Promise<void> {
       <div class="calendar-bar">
         <div><strong><span id="action-count">0</span>件をカレンダー操作</strong><span>ファイルを開き、カレンダー側で確定します</span></div>
         <div class="calendar-actions">
-          <button id="add-calendar" class="primary-button" type="button">Googleカレンダーへ追加</button>
-          <button id="remove-calendar" class="secondary-button" type="button">Googleカレンダーから削除</button>
+          <button id="add-calendar" class="primary-button" type="button">選んだ予定を追加</button>
+          <button id="remove-calendar" class="secondary-button" type="button">選んだ予定を取消</button>
         </div>
       </div>
       <p class="calendar-note">削除は、以前このアプリから追加した同じ予定を「取消」として渡します。カレンダーアプリによっては削除確認が表示されます。</p>
@@ -298,6 +306,8 @@ async function start(): Promise<void> {
   const scheduleSelect = document.querySelector<HTMLSelectElement>('#schedule-filter')!;
   const selectedSchoolList = document.querySelector<HTMLElement>('#selected-school-list')!;
   const selectedSchoolCount = document.querySelector<HTMLElement>('#selected-school-count')!;
+  const schoolResultCount = document.querySelector<HTMLElement>('#school-result-count')!;
+  const clearSchoolFilters = document.querySelector<HTMLButtonElement>('#clear-school-filters')!;
   const mockList = document.querySelector<HTMLElement>('#mock-list')!;
   const sourceCount = document.querySelector<HTMLElement>('#source-count')!;
   const timeline = document.querySelector<HTMLElement>('#timeline')!;
@@ -329,7 +339,7 @@ async function start(): Promise<void> {
       && (genderFilter === 'all' || source.gender === genderFilter)
       && (scheduleFilter === 'all'
         || (scheduleFilter === 'has-events' && (source.verified_event_count ?? 0) > 0)
-        || (scheduleFilter === 'awaiting' && (source.verified_event_count ?? 0) === 0)));
+        || (scheduleFilter === 'no-events' && (source.verified_event_count ?? 0) === 0)));
 
   const renderChoiceList = (kind: SourceKind, container: HTMLElement): void => {
     const visibleSources = kind === 'school' ? visibleSchoolSources() : sources.filter((source) => source.kind === kind);
@@ -337,7 +347,7 @@ async function start(): Promise<void> {
       ? visibleSources.map((source) => `
         <label class="source-choice ${selectedSources.has(source.key) ? 'is-selected' : ''}">
           <input type="checkbox" value="${source.key}" ${selectedSources.has(source.key) ? 'checked' : ''} />
-          <span class="checkmark" aria-hidden="true">✓</span><span><strong>${escapeHtml(source.name)}</strong>${source.kind === 'school' ? `<small>${escapeHtml([source.prefecture, source.municipality, source.gender, source.ownership].filter(Boolean).join('・') || '属性確認中')} ／ ${(source.verified_event_count ?? 0) > 0 ? `確認済み日程 ${source.verified_event_count}件` : '公式発表待ち'}</small>` : ''}</span>
+          <span class="checkmark" aria-hidden="true">✓</span><span class="source-choice__copy"><strong>${escapeHtml(source.name)}</strong>${source.kind === 'school' ? `<small class="school-location">${escapeHtml([source.prefecture, source.municipality].filter(Boolean).join('・') || '地域確認中')}</small><span class="school-tags"><em>${escapeHtml([source.gender, source.ownership].filter(Boolean).join('・') || '属性確認中')}</em><em>${(source.verified_event_count ?? 0) > 0 ? `日程 ${source.verified_event_count}件` : '確認済み日程なし'}</em></span>` : ''}</span>
         </label>
       `).join('')
       : '<div class="choice-empty">該当する学校がありません。別の学校名で検索してください。</div>';
@@ -346,8 +356,11 @@ async function start(): Promise<void> {
   const renderSources = (): void => {
     renderChoiceList('school', schoolList);
     renderChoiceList('mock_exam', mockList);
-    sourceCount.textContent = `${selectedSources.size}件選択中`;
+    const visibleSchools = visibleSchoolSources();
     const selectedSchools = schoolSources.filter((source) => selectedSources.has(source.key));
+    const selectedMocks = sources.filter((source) => source.kind === 'mock_exam' && selectedSources.has(source.key));
+    sourceCount.textContent = `${selectedSchools.length}校・${selectedMocks.length}模試を選択中`;
+    schoolResultCount.textContent = `${visibleSchools.length}校表示`;
     selectedSchoolCount.textContent = `${selectedSchools.length}校`;
     selectedSchoolList.innerHTML = selectedSchools.length
       ? selectedSchools.map((source) => `<button type="button" data-source-key="${source.key}">${escapeHtml(source.name)}<span aria-hidden="true">×</span></button>`).join('')
@@ -406,9 +419,14 @@ async function start(): Promise<void> {
     schoolQuery = schoolSearch.value;
     renderSources();
   });
-  for (const select of [prefectureSelect, municipalitySelect, ownershipSelect, genderSelect, scheduleSelect]) {
+  prefectureSelect.addEventListener('change', () => {
+    prefectureFilter = prefectureSelect.value;
+    municipalityFilter = 'all';
+    municipalitySelect.value = 'all';
+    renderSources();
+  });
+  for (const select of [municipalitySelect, ownershipSelect, genderSelect, scheduleSelect]) {
     select.addEventListener('change', () => {
-      prefectureFilter = prefectureSelect.value;
       municipalityFilter = municipalitySelect.value;
       ownershipFilter = ownershipSelect.value;
       genderFilter = genderSelect.value;
@@ -416,6 +434,18 @@ async function start(): Promise<void> {
       renderSources();
     });
   }
+  clearSchoolFilters.addEventListener('click', () => {
+    schoolQuery = '';
+    prefectureFilter = 'all';
+    municipalityFilter = 'all';
+    ownershipFilter = 'all';
+    genderFilter = 'all';
+    scheduleFilter = 'all';
+    schoolSearch.value = '';
+    for (const select of [prefectureSelect, municipalitySelect, ownershipSelect, genderSelect, scheduleSelect]) select.value = 'all';
+    renderSources();
+    schoolSearch.focus();
+  });
   selectedSchoolList.addEventListener('click', (event) => {
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-source-key]');
     if (!button) return;
