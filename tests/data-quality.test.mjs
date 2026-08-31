@@ -30,6 +30,10 @@ describe('official data quality gate', () => {
       expect(school.verified_event_count, school.id).toBeGreaterThanOrEqual(0);
       expect(school.official_sources.length, school.id).toBeGreaterThan(0);
       expect(JSON.stringify(school), school.id).not.toMatch(/candidate|quarantined|incident|event_map|registration_map/);
+      if (pilotSchoolIds.includes(school.id)) {
+        expect(school.prefecture, school.id).toBeTruthy();
+        expect(school.municipality, school.id).toBeTruthy();
+      }
     }
   });
 
