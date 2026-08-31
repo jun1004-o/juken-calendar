@@ -3,113 +3,122 @@
     "id": "tohkatsu-jh",
     "name": "千葉県立東葛飾中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "千葉県",
+    "municipality": "柏市",
+    "ownership": "公立",
+    "gender": "共学",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 6,
     "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
       "https://cms1.chiba-c.ed.jp/tohkatsu-jh/",
-      "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/kenchu/index.html"
+      "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/kenchu/index.html",
+      "https://cms1.chiba-c.ed.jp/tohkatsu-jh/16b66bcf36383e451ed15511aab457c9"
     ]
   },
   {
     "id": "shibaura-kashiwa-jh",
     "name": "芝浦工業大学柏中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "千葉県",
+    "municipality": "柏市",
+    "ownership": "私立",
+    "gender": "共学",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 6,
     "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.ka.shibaura-it.ac.jp/admissions/junior/"
+      "https://www.ka.shibaura-it.ac.jp/admissions/junior/",
+      "https://www.ka.shibaura-it.ac.jp/guidance/"
     ]
   },
   {
     "id": "reitaku-jh",
     "name": "麗澤中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "千葉県",
+    "municipality": "柏市",
+    "ownership": "私立",
+    "gender": "共学",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 13,
     "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.hs.reitaku.jp/junior/info_j.html"
+      "https://www.hs.reitaku.jp/junior/info_j.html",
+      "https://www.hs.reitaku.jp/about/overview.html"
     ]
   },
   {
     "id": "meikei-jh",
     "name": "茗溪学園中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "茨城県",
+    "municipality": "つくば市",
+    "ownership": "私立",
+    "gender": "共学",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 2,
     "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://meikei.ac.jp/admissions/junior/"
+      "https://meikei.ac.jp/admissions/junior/",
+      "https://meikei.ac.jp/"
     ]
   },
   {
     "id": "ichikawa-jh",
     "name": "市川中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "千葉県",
+    "municipality": "市川市",
+    "ownership": "私立",
+    "gender": "共学",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 6,
     "last_verified_at": "2026-08-28T06:00:20+09:00",
     "official_sources": [
-      "https://www.ichigaku.ac.jp/junior-exam/guideline/"
+      "https://www.ichigaku.ac.jp/junior-exam/guideline/",
+      "https://www.ichigaku.ac.jp/",
+      "https://www.ichigaku.ac.jp/history/"
     ]
   },
   {
     "id": "toho-jh",
     "name": "東邦大学付属東邦中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "千葉県",
+    "municipality": "習志野市",
+    "ownership": "私立",
+    "gender": "共学",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 7,
     "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.tohojh.toho-u.ac.jp/exam/020502.html"
+      "https://www.tohojh.toho-u.ac.jp/exam/020502.html",
+      "https://www.tohojh.toho-u.ac.jp/"
     ]
   },
   {
     "id": "shiba-jh",
     "name": "芝中学校",
     "aliases": [],
-    "prefecture": null,
-    "municipality": null,
-    "ownership": null,
-    "gender": null,
+    "prefecture": "東京都",
+    "municipality": "港区",
+    "ownership": "私立",
+    "gender": "男子",
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 0,
     "last_verified_at": "2026-08-27T06:00:57+09:00",
     "official_sources": [
-      "https://www.shiba.ac.jp/admissions/"
+      "https://www.shiba.ac.jp/admissions/",
+      "https://www.shiba.ac.jp/introduction/",
+      "https://www.shiba.ac.jp/access/"
     ]
   },
   {
