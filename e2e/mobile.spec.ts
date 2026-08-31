@@ -7,13 +7,17 @@ test('school and mock-exam selection works at mobile width with add and remove e
   await expect(page.locator('.source-choice')).toHaveCount(35);
   await expect(page.locator('.event')).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText('監査待ち');
+  await expect(page.locator('body')).not.toContainText('公式発表待ち');
 
-  await page.getByLabel('学校名を検索').fill('浦和明の星');
+  await expect(page.getByText('31校を掲載')).toBeVisible();
+  await page.getByLabel('学校名で探す').fill('浦和明の星');
+  await page.getByText('地域・学校の種類で絞り込む').click();
   await page.getByLabel('都県').selectOption('埼玉県');
   await page.getByLabel('男女区分').selectOption('女子');
   await page.locator('#schedule-filter').selectOption('has-events');
   const schoolGroup = page.locator('.source-group').filter({ has: page.getByRole('heading', { name: '学校' }) });
   await expect(schoolGroup.locator('.source-choice')).toHaveCount(1);
+  await expect(page.locator('#school-result-count')).toHaveText('1校表示');
   await schoolGroup.getByText('浦和明の星女子中学校', { exact: true }).click();
   await expect(page.locator('.selected-school-list')).toContainText('浦和明の星女子中学校');
   await expect(page.locator('.event').first()).toBeVisible();
@@ -35,10 +39,10 @@ test('school and mock-exam selection works at mobile width with add and remove e
   expect(width.scroll).toBeLessThanOrEqual(width.client);
 
   const addDownload = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Googleカレンダーへ追加' }).click();
+  await page.getByRole('button', { name: '選んだ予定を追加' }).click();
   expect((await addDownload).suggestedFilename()).toBe('juken-calendar-add.ics');
 
   const removeDownload = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Googleカレンダーから削除' }).click();
+  await page.getByRole('button', { name: '選んだ予定を取消' }).click();
   expect((await removeDownload).suggestedFilename()).toBe('juken-calendar-remove.ics');
 });
