@@ -3,122 +3,113 @@
     "id": "tohkatsu-jh",
     "name": "千葉県立東葛飾中学校",
     "aliases": [],
-    "prefecture": "千葉県",
-    "municipality": "柏市",
-    "ownership": "公立",
-    "gender": "共学",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 6,
-    "last_verified_at": "2026-08-27T06:00:57+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
       "https://cms1.chiba-c.ed.jp/tohkatsu-jh/",
-      "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/kenchu/index.html",
-      "https://cms1.chiba-c.ed.jp/tohkatsu-jh/16b66bcf36383e451ed15511aab457c9"
+      "https://www.pref.chiba.lg.jp/kyouiku/shidou/nyuushi/kenchu/index.html"
     ]
   },
   {
     "id": "shibaura-kashiwa-jh",
     "name": "芝浦工業大学柏中学校",
     "aliases": [],
-    "prefecture": "千葉県",
-    "municipality": "柏市",
-    "ownership": "私立",
-    "gender": "共学",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 6,
-    "last_verified_at": "2026-08-27T06:00:57+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
-      "https://www.ka.shibaura-it.ac.jp/admissions/junior/",
-      "https://www.ka.shibaura-it.ac.jp/guidance/"
+      "https://www.ka.shibaura-it.ac.jp/admissions/junior/"
     ]
   },
   {
     "id": "reitaku-jh",
     "name": "麗澤中学校",
     "aliases": [],
-    "prefecture": "千葉県",
-    "municipality": "柏市",
-    "ownership": "私立",
-    "gender": "共学",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 13,
-    "last_verified_at": "2026-08-27T06:00:57+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
-      "https://www.hs.reitaku.jp/junior/info_j.html",
-      "https://www.hs.reitaku.jp/about/overview.html"
+      "https://www.hs.reitaku.jp/junior/info_j.html"
     ]
   },
   {
     "id": "meikei-jh",
     "name": "茗溪学園中学校",
     "aliases": [],
-    "prefecture": "茨城県",
-    "municipality": "つくば市",
-    "ownership": "私立",
-    "gender": "共学",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 2,
-    "last_verified_at": "2026-08-27T06:00:57+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
-      "https://meikei.ac.jp/admissions/junior/",
-      "https://meikei.ac.jp/"
+      "https://meikei.ac.jp/admissions/junior/"
     ]
   },
   {
     "id": "ichikawa-jh",
     "name": "市川中学校",
     "aliases": [],
-    "prefecture": "千葉県",
-    "municipality": "市川市",
-    "ownership": "私立",
-    "gender": "共学",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 6,
-    "last_verified_at": "2026-08-28T06:00:20+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
-      "https://www.ichigaku.ac.jp/junior-exam/guideline/",
-      "https://www.ichigaku.ac.jp/",
-      "https://www.ichigaku.ac.jp/history/"
+      "https://www.ichigaku.ac.jp/junior-exam/guideline/"
     ]
   },
   {
     "id": "toho-jh",
     "name": "東邦大学付属東邦中学校",
     "aliases": [],
-    "prefecture": "千葉県",
-    "municipality": "習志野市",
-    "ownership": "私立",
-    "gender": "共学",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 7,
-    "last_verified_at": "2026-08-27T06:00:57+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
-      "https://www.tohojh.toho-u.ac.jp/exam/020502.html",
-      "https://www.tohojh.toho-u.ac.jp/"
+      "https://www.tohojh.toho-u.ac.jp/exam/020502.html"
     ]
   },
   {
     "id": "shiba-jh",
     "name": "芝中学校",
     "aliases": [],
-    "prefecture": "東京都",
-    "municipality": "港区",
-    "ownership": "私立",
-    "gender": "男子",
+    "prefecture": null,
+    "municipality": null,
+    "ownership": null,
+    "gender": null,
     "secondary_education_type": null,
     "monitoring_status": "verified",
     "verified_event_count": 0,
-    "last_verified_at": "2026-08-27T06:00:57+09:00",
+    "last_verified_at": "2026-08-31T06:02:19+09:00",
     "official_sources": [
-      "https://www.shiba.ac.jp/admissions/",
-      "https://www.shiba.ac.jp/introduction/",
-      "https://www.shiba.ac.jp/access/"
+      "https://www.shiba.ac.jp/admissions/"
     ]
   },
   {
@@ -440,7 +431,7 @@
     "gender": "男子",
     "secondary_education_type": null,
     "monitoring_status": "verified",
-    "verified_event_count": 11,
+    "verified_event_count": 0,
     "last_verified_at": "2026-08-30T07:27:12+09:00",
     "official_sources": [
       "https://www.kaijo.ed.jp/",
@@ -481,7 +472,7 @@
     "gender": "女子",
     "secondary_education_type": null,
     "monitoring_status": "verified",
-    "verified_event_count": 4,
+    "verified_event_count": 0,
     "last_verified_at": "2026-08-30T07:27:12+09:00",
     "official_sources": [
       "https://www.oin.ed.jp/",
@@ -502,7 +493,7 @@
     "gender": "女子",
     "secondary_education_type": "完全中高一貫",
     "monitoring_status": "verified",
-    "verified_event_count": 3,
+    "verified_event_count": 0,
     "last_verified_at": "2026-08-30T07:27:12+09:00",
     "official_sources": [
       "https://www.joshigakuin.ed.jp/",
@@ -532,6 +523,80 @@
     ]
   },
   {
+    "id": "keio-futsuu-jh",
+    "name": "慶應義塾普通部",
+    "aliases": [
+      "普通部"
+    ],
+    "prefecture": "神奈川県",
+    "municipality": "横浜市港北区",
+    "ownership": null,
+    "gender": "男子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 0,
+    "last_verified_at": "2026-08-31T07:30:07+09:00",
+    "official_sources": [
+      "https://www.kf.keio.ac.jp/",
+      "https://www.kf.keio.ac.jp/access/",
+      "https://www.kf.keio.ac.jp/admission/examination/"
+    ]
+  },
+  {
+    "id": "shibuya-shibuya-jh",
+    "name": "渋谷教育学園渋谷中学高等学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "渋谷区",
+    "ownership": null,
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 13,
+    "last_verified_at": "2026-09-02T07:29:19+09:00",
+    "official_sources": [
+      "https://www.shibushibu.jp/",
+      "https://www.shibushibu.jp/information/access.html",
+      "https://www.shibushibu.jp/admission/detail.html"
+    ]
+  },
+  {
+    "id": "keio-chutobu-jh",
+    "name": "慶應義塾中等部",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "港区",
+    "ownership": null,
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 5,
+    "last_verified_at": "2026-09-02T07:29:19+09:00",
+    "official_sources": [
+      "https://www.kgc.keio.ac.jp/",
+      "https://www.kgc.keio.ac.jp/map.html",
+      "https://www.kgc.keio.ac.jp/youkou.html"
+    ]
+  },
+  {
+    "id": "aoyama-gakuin-jh",
+    "name": "青山学院中等部",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "渋谷区",
+    "ownership": null,
+    "gender": null,
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 3,
+    "last_verified_at": "2026-09-02T07:29:19+09:00",
+    "official_sources": [
+      "https://www.jh.aoyama.ed.jp/",
+      "https://www.jh.aoyama.ed.jp/contact/index.html",
+      "https://www.jh.aoyama.ed.jp/admission/index.html"
+    ]
+  },
+  {
     "id": "shirayuri-jh",
     "name": "白百合学園中学校",
     "aliases": [
@@ -543,7 +608,7 @@
     "gender": "女子",
     "secondary_education_type": "併設型中高一貫",
     "monitoring_status": "verified",
-    "verified_event_count": 8,
+    "verified_event_count": 0,
     "last_verified_at": "2026-08-31T07:30:07+09:00",
     "official_sources": [
       "https://www.shirayuri.ed.jp/top.html",
@@ -564,32 +629,12 @@
     "gender": "女子",
     "secondary_education_type": "中高一貫",
     "monitoring_status": "verified",
-    "verified_event_count": 9,
+    "verified_event_count": 0,
     "last_verified_at": "2026-08-31T07:30:07+09:00",
     "official_sources": [
       "https://www.urawa-akenohoshi.ed.jp/",
       "https://www.urawa-akenohoshi.ed.jp/access/",
       "https://www.urawa-akenohoshi.ed.jp/admission/admission_summary/"
-    ]
-  },
-  {
-    "id": "keio-futsuu-jh",
-    "name": "慶應義塾普通部",
-    "aliases": [
-      "普通部"
-    ],
-    "prefecture": "神奈川県",
-    "municipality": "横浜市港北区",
-    "ownership": null,
-    "gender": "男子",
-    "secondary_education_type": null,
-    "monitoring_status": "verified",
-    "verified_event_count": 0,
-    "last_verified_at": "2026-08-31T07:30:07+09:00",
-    "official_sources": [
-      "https://www.kf.keio.ac.jp/",
-      "https://www.kf.keio.ac.jp/access/",
-      "https://www.kf.keio.ac.jp/admission/examination/"
     ]
   }
 ]
