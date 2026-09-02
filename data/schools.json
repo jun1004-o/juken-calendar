@@ -431,7 +431,7 @@
     "gender": "男子",
     "secondary_education_type": null,
     "monitoring_status": "verified",
-    "verified_event_count": 0,
+    "verified_event_count": 11,
     "last_verified_at": "2026-08-30T07:27:12+09:00",
     "official_sources": [
       "https://www.kaijo.ed.jp/",
@@ -472,7 +472,7 @@
     "gender": "女子",
     "secondary_education_type": null,
     "monitoring_status": "verified",
-    "verified_event_count": 0,
+    "verified_event_count": 4,
     "last_verified_at": "2026-08-30T07:27:12+09:00",
     "official_sources": [
       "https://www.oin.ed.jp/",
@@ -493,7 +493,7 @@
     "gender": "女子",
     "secondary_education_type": "完全中高一貫",
     "monitoring_status": "verified",
-    "verified_event_count": 0,
+    "verified_event_count": 3,
     "last_verified_at": "2026-08-30T07:27:12+09:00",
     "official_sources": [
       "https://www.joshigakuin.ed.jp/",
@@ -579,6 +579,25 @@
     ]
   },
   {
+    "id": "meiji-meiji-jh",
+    "name": "明治大学付属明治中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "調布市",
+    "ownership": null,
+    "gender": "共学",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 2,
+    "last_verified_at": "2026-09-03T07:32:38+09:00",
+    "official_sources": [
+      "https://www.meiji.ac.jp/ko_chu/",
+      "https://www.meiji.ac.jp/ko_chu/about/access.html",
+      "https://www.meiji.ac.jp/ko_chu/about/basic.html",
+      "https://www.meiji.ac.jp/ko_chu/admission/briefing_jr.html"
+    ]
+  },
+  {
     "id": "aoyama-gakuin-jh",
     "name": "青山学院中等部",
     "aliases": [],
@@ -594,6 +613,59 @@
       "https://www.jh.aoyama.ed.jp/",
       "https://www.jh.aoyama.ed.jp/contact/index.html",
       "https://www.jh.aoyama.ed.jp/admission/index.html"
+    ]
+  },
+  {
+    "id": "kichijo-joshi-jh",
+    "name": "吉祥女子中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "武蔵野市",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 1,
+    "last_verified_at": "2026-09-03T07:32:38+09:00",
+    "official_sources": [
+      "https://www.kichijo-joshi.jp/",
+      "https://www.kichijo-joshi.jp/access/"
+    ]
+  },
+  {
+    "id": "ohyu-jh",
+    "name": "鷗友学園女子中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "世田谷区",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 6,
+    "last_verified_at": "2026-09-03T07:32:38+09:00",
+    "official_sources": [
+      "https://www.ohyu.jp/",
+      "https://www.ohyu.jp/about/access/",
+      "https://www.ohyu.jp/admissions/yoko/"
+    ]
+  },
+  {
+    "id": "futaba-jh",
+    "name": "雙葉中学校",
+    "aliases": [],
+    "prefecture": "東京都",
+    "municipality": "千代田区",
+    "ownership": null,
+    "gender": "女子",
+    "secondary_education_type": null,
+    "monitoring_status": "verified",
+    "verified_event_count": 4,
+    "last_verified_at": "2026-09-03T07:32:38+09:00",
+    "official_sources": [
+      "https://www.futabagakuen-jh.ed.jp/jsh/",
+      "https://www.futabagakuen-jh.ed.jp/jsh/access/",
+      "https://www.futabagakuen-jh.ed.jp/jsh/admissions/info/"
     ]
   },
   {
