@@ -4,12 +4,12 @@ test('school and mock-exam selection works at mobile width with add and remove e
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto('/');
   await expect(page.getByRole('heading', { name: '受験日程を、 ひとつのカレンダーに。' })).toBeVisible();
-  await expect(page.locator('.source-choice')).toHaveCount(35);
+  await expect(page.locator('.source-choice')).toHaveCount(42);
   await expect(page.locator('.event')).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText('監査待ち');
   await expect(page.locator('body')).not.toContainText('公式発表待ち');
 
-  await expect(page.getByText('31校を掲載')).toBeVisible();
+  await expect(page.getByText('38校を掲載')).toBeVisible();
   await page.getByLabel('学校名で探す').fill('浦和明の星');
   await page.getByText('地域・学校の種類で絞り込む').click();
   await page.getByLabel('都県').selectOption('埼玉県');
@@ -20,7 +20,11 @@ test('school and mock-exam selection works at mobile width with add and remove e
   await expect(page.locator('#school-result-count')).toHaveText('1校表示');
   await schoolGroup.getByText('浦和明の星女子中学校', { exact: true }).click();
   await expect(page.locator('.selected-school-list')).toContainText('浦和明の星女子中学校');
+  await page.locator('#continue-timeline').click();
   await expect(page.locator('.event').first()).toBeVisible();
+  await expect(page.locator('.setup-panel')).toBeHidden();
+  await expect(page.locator('.event-time').first()).not.toBeEmpty();
+  await page.locator('#show-sources').click();
 
   await page.reload();
   await expect(page.locator('.selected-school-list')).toContainText('浦和明の星女子中学校');
@@ -30,7 +34,12 @@ test('school and mock-exam selection works at mobile width with add and remove e
   const mockGroup = page.locator('.source-group').filter({ has: page.getByRole('heading', { name: '模試' }) });
   await mockGroup.getByRole('button', { name: 'すべて選択' }).click();
   await expect(page.locator('.event')).toHaveCount(28);
-  await expect(page.getByText('28件をカレンダー操作')).toBeVisible();
+  await page.locator('#continue-timeline').click();
+  await expect(page.locator('#action-count')).toHaveText('28');
+  await page.locator('#upcoming').click();
+  await expect(page.locator('#date-filter')).not.toHaveValue('');
+  await page.locator('#all-dates').click();
+  await expect(page.locator('#action-count')).toHaveText('28');
 
   const width = await page.evaluate(() => ({
     scroll: document.documentElement.scrollWidth,

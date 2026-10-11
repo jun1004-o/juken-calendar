@@ -35,11 +35,13 @@ interface TimelineEvent extends CalendarExportEvent {
   source_key: string;
   category: TimelineCategory;
   admission_year: number;
+  time_precision?: 'approximate';
   change_type?: 'new' | 'changed' | 'cancelled';
 }
 
 const categoryLabels: Record<TimelineCategory, string> = {
   briefing: '説明会',
+  admission_briefing: '入試説明会',
   open_school: '公開・体験',
   festival: '文化祭',
   application: '出願',
@@ -143,6 +145,7 @@ function schoolTimelineEvents(events: AdmissionEvent[], schoolMap: Map<string, S
       category: event.category,
       admission_year: event.admission_year,
       change_type: event.change_type,
+      time_precision: event.time_precision,
     };
     const result: TimelineEvent[] = [base];
     if (event.registration_opens_at) result.push({
@@ -239,6 +242,7 @@ async function start(): Promise<void> {
   const options = (values: string[]): string => values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join('');
 
   app.innerHTML = `
+    <nav class="view-nav" aria-label="操作の切り替え"><button id="show-sources" type="button" aria-pressed="true">1 学校・模試を選ぶ</button><button id="show-timeline" type="button" aria-pressed="false">2 日程を確認する</button></nav>
     <section class="panel setup-panel" aria-labelledby="source-title">
       <div class="section-heading">
         <div><span class="step">1</span><h2 id="source-title">学校・模試を選ぶ</h2></div>
@@ -273,30 +277,48 @@ async function start(): Promise<void> {
         <div id="mock-list" class="choice-grid choice-grid--compact"></div>
       </div>
       <p class="privacy-note">選択内容はこの端末だけに保存します。ログインや個人情報の登録はありません。</p>
+      <button id="continue-timeline" class="primary-button continue-button" type="button">選んだ学校・模試の日程を見る →</button>
       <button id="install-app" class="install-button" type="button" hidden>この端末にアプリとして追加</button>
     </section>
-    <section class="panel" aria-labelledby="timeline-title">
+    <section class="panel schedule-panel" aria-labelledby="timeline-title" hidden>
       <div class="section-heading section-heading--stack">
-        <div><span class="step">2</span><h2 id="timeline-title">追加・削除する予定を選ぶ</h2></div>
+        <div><span class="step">2</span><h2 id="timeline-title">日程を確認する</h2></div>
         <p id="result-count" class="result-count"></p>
       </div>
       <div class="filters">
         <label>種類<select id="category-filter"><option value="all">すべて</option>${categoryOptions.map(([value, label]) => `<option value="${value}">${label}</option>`).join('')}</select></label>
         <label>この日以降<input id="date-filter" type="date" /></label>
       </div>
+      <div class="date-shortcuts"><button id="upcoming" type="button">今日以降</button><button id="all-dates" type="button">過去の日程も見る</button></div>
       <div class="timeline-toolbar"><button id="toggle-visible" class="text-button" type="button">表示中をすべて選択</button></div>
       <div id="timeline" class="timeline"></div>
       <div class="calendar-bar">
-        <div><strong><span id="action-count">0</span>件をカレンダー操作</strong><span>ファイルを開き、カレンダー側で確定します</span></div>
+        <div><strong>3 カレンダーへ保存（<span id="action-count">0</span>件）</strong><span>① ファイルを保存 → ② 開く → ③ カレンダーで確定</span></div>
         <div class="calendar-actions">
           <button id="add-calendar" class="primary-button" type="button">選んだ予定を追加</button>
           <button id="remove-calendar" class="secondary-button" type="button">選んだ予定を取消</button>
         </div>
       </div>
-      <p class="calendar-note">削除は、以前このアプリから追加した同じ予定を「取消」として渡します。カレンダーアプリによっては削除確認が表示されます。</p>
+      <p id="export-feedback" class="export-feedback" role="status"></p>
+      <p class="calendar-note">取消は、以前このアプリから追加した同じ予定を「取消」として渡します。カレンダーアプリによっては削除確認が表示されます。</p>
     </section>
   `;
 
+  const sourcePanel = document.querySelector<HTMLElement>('.setup-panel')!;
+  const schedulePanel = document.querySelector<HTMLElement>('.schedule-panel')!;
+  const showSources = document.querySelector<HTMLButtonElement>('#show-sources')!;
+  const showTimeline = document.querySelector<HTMLButtonElement>('#show-timeline')!;
+  const continueButton = document.querySelector<HTMLButtonElement>('#continue-timeline')!;
+  const changeView = (schedule: boolean): void => {
+    sourcePanel.hidden = schedule;
+    schedulePanel.hidden = !schedule;
+    showSources.setAttribute('aria-pressed', String(!schedule));
+    showTimeline.setAttribute('aria-pressed', String(schedule));
+    document.querySelector('.view-nav')?.scrollIntoView({ block: 'start' });
+  };
+  showSources.addEventListener('click', () => changeView(false));
+  showTimeline.addEventListener('click', () => changeView(true));
+  continueButton.addEventListener('click', () => changeView(true));
   const schoolList = document.querySelector<HTMLElement>('#school-list')!;
   const schoolSearch = document.querySelector<HTMLInputElement>('#school-search')!;
   const prefectureSelect = document.querySelector<HTMLSelectElement>('#prefecture-filter')!;
@@ -359,6 +381,8 @@ async function start(): Promise<void> {
     const visibleSchools = visibleSchoolSources();
     const selectedSchools = schoolSources.filter((source) => selectedSources.has(source.key));
     const selectedMocks = sources.filter((source) => source.kind === 'mock_exam' && selectedSources.has(source.key));
+    continueButton.disabled = selectedSchools.length + selectedMocks.length === 0;
+    continueButton.textContent = selectedSources.size ? `${selectedSchools.length}校・${selectedMocks.length}模試の日程を見る →` : '学校か模試を選んでください';
     sourceCount.textContent = `${selectedSchools.length}校・${selectedMocks.length}模試を選択中`;
     schoolResultCount.textContent = `${visibleSchools.length}校表示`;
     selectedSchoolCount.textContent = `${selectedSchools.length}校`;
@@ -368,7 +392,7 @@ async function start(): Promise<void> {
     document.querySelectorAll<HTMLButtonElement>('.source-toggle').forEach((button) => {
       const kind = button.dataset.kind as SourceKind;
       const kindSources = kind === 'school' ? visibleSchoolSources() : sources.filter((source) => source.kind === kind);
-      button.textContent = kindSources.length > 0 && kindSources.every((source) => selectedSources.has(source.key)) ? 'すべて解除' : 'すべて選択';
+      button.textContent = kindSources.length > 0 && kindSources.every((source) => selectedSources.has(source.key)) ? (kind === 'school' ? '表示中をすべて解除' : 'すべて解除') : (kind === 'school' ? '表示中をすべて選択' : 'すべて選択');
     });
   };
 
@@ -391,13 +415,16 @@ async function start(): Promise<void> {
       const stateClass = event.change_type ? `event--${event.change_type}` : '';
       const stateLabel = event.change_type === 'changed' ? '<span class="change-badge">変更あり</span>' : event.change_type === 'cancelled' ? '<span class="change-badge change-badge--cancelled">中止</span>' : '';
       const formatted = formatDate(event.starts_at);
+      const timeLabel = event.starts_at.includes('T') ? new Intl.DateTimeFormat('ja-JP', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit' }).format(new Date(event.starts_at)) : '時刻未掲載';
+      const yearLabel = event.starts_at.slice(0, 4);
+      const endLabel = event.ends_at && event.ends_at !== event.starts_at ? (event.ends_at.slice(0, 10) !== event.starts_at.slice(0, 10) ? formatDate(event.ends_at) : event.ends_at.includes('T') ? new Intl.DateTimeFormat('ja-JP', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit' }).format(new Date(event.ends_at)) : '') : '';
       return `<article class="event ${stateClass} ${selectedEvents.has(event.id) ? 'is-calendar-selected' : ''}">
-        <time datetime="${escapeHtml(event.starts_at)}"><strong>${formatted.split('(')[0]}</strong><span>${formatted.match(/\((.)\)/)?.[1] ?? ''}</span></time>
+        <time datetime="${escapeHtml(event.starts_at)}"><strong>${formatted.split('(')[0]}</strong><span>${formatted.match(/\((.)\)/)?.[1] ?? ''}</span><small>${yearLabel}年</small></time>
         <div class="event__body">
           <div class="event__meta"><span class="category category--${event.category}">${categoryLabels[event.category]}</span>${stateLabel}<span class="year-badge">${event.admission_year}年度入学向け</span></div>
-          <h3>${escapeHtml(event.title)}</h3>
+          <p class="event-time">${timeLabel}${event.time_precision === 'approximate' ? '（目安）' : ''}${endLabel ? ` ～ ${endLabel}` : ''}</p><h3>${escapeHtml(event.title)}</h3>
           <p class="school-name">${escapeHtml(event.owner_name)}</p>
-          <label class="event-picker"><input type="checkbox" value="${escapeHtml(event.id)}" ${selectedEvents.has(event.id) ? 'checked' : ''} /><span>${selectedEvents.has(event.id) ? '追加・削除の対象' : 'カレンダー対象にする'}</span></label>
+          <label class="event-picker"><input type="checkbox" value="${escapeHtml(event.id)}" ${selectedEvents.has(event.id) ? 'checked' : ''} /><span>カレンダーに保存する</span></label>
           <a class="source-link" href="${escapeHtml(event.source_url)}" target="_blank" rel="noreferrer">公式情報を確認 <span aria-hidden="true">↗</span></a>
           <p class="verified">最終確認 ${formatVerified(event.verified_at)}</p>
         </div>
@@ -493,8 +520,17 @@ async function start(): Promise<void> {
     saveSet(eventSelectionKey, selectedEvents);
     renderTimeline();
   });
-  addButton.addEventListener('click', () => downloadIcs(generateCalendarIcs(actionEvents()), 'juken-calendar-add.ics'));
-  removeButton.addEventListener('click', () => downloadIcs(generateCalendarIcs(actionEvents(), 'cancel'), 'juken-calendar-remove.ics'));
+  document.querySelector('#upcoming')!.addEventListener('click', () => {
+    fromDate = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Tokyo' }).format(new Date());
+    dateFilter.value = fromDate; renderTimeline();
+  });
+  document.querySelector('#all-dates')!.addEventListener('click', () => { fromDate = ''; dateFilter.value = ''; renderTimeline(); });
+  const exportCalendar = (cancel: boolean): void => {
+    downloadIcs(generateCalendarIcs(actionEvents(), cancel ? 'cancel' : 'publish'), cancel ? 'juken-calendar-remove.ics' : 'juken-calendar-add.ics');
+    document.querySelector('#export-feedback')!.textContent = `${actionEvents().length}件の${cancel ? '取消用' : '追加用'}ファイルを保存しました。ファイルを開き、カレンダーで確定してください。`;
+  };
+  addButton.addEventListener('click', () => exportCalendar(false));
+  removeButton.addEventListener('click', () => exportCalendar(true));
 
   let installPrompt: Event & { prompt: () => Promise<void> } | null = null;
   window.addEventListener('beforeinstallprompt', (event) => {

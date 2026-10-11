@@ -30,15 +30,21 @@ describe('official data quality gate', () => {
       expect(school.verified_event_count, school.id).toBeGreaterThanOrEqual(0);
       expect(school.official_sources.length, school.id).toBeGreaterThan(0);
       expect(JSON.stringify(school), school.id).not.toMatch(/candidate|quarantined|incident|event_map|registration_map/);
-      if (pilotSchoolIds.includes(school.id)) {
-        expect(school.prefecture, school.id).toBeTruthy();
-        expect(school.municipality, school.id).toBeTruthy();
+      // Officially unconfirmed attributes must stay null rather than be guessed.
+      for (const field of ['prefecture', 'municipality']) {
+        expect(school[field] === null || typeof school[field] === 'string', school.id).toBe(true);
       }
     }
   });
 
   it('validates every seeded event', () => {
     for (const event of events) expect(validate(event), event.id).toBe(true);
+  });
+
+  it('allows explicit approximate times but rejects unknown precision metadata', () => {
+    const event = { ...events[0], time_precision: 'approximate' };
+    expect(validate(event)).toBe(true);
+    expect(validate({ ...event, time_precision: 'guessed' })).toBe(false);
   });
 
   it('rejects an event without admission_year', () => {
