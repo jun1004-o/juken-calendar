@@ -1,4 +1,4 @@
-export type EventCategory = 'briefing' | 'open_school' | 'festival' | 'application' | 'exam' | 'result' | 'enrollment' | 'other';
+export type EventCategory = 'briefing' | 'admission_briefing' | 'open_school' | 'festival' | 'application' | 'exam' | 'result' | 'enrollment' | 'other';
 export type EventStatus = 'candidate' | 'verified' | 'quarantined' | 'cancelled';
 
 export interface School {
@@ -36,6 +36,7 @@ export interface AdmissionEvent {
   confidence: 'low' | 'medium' | 'high';
   content_hash: string | null;
   change_note: string;
+  time_precision?: 'approximate';
   change_type?: 'new' | 'changed' | 'cancelled';
 }
 

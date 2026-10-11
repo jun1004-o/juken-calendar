@@ -139,3 +139,27 @@ footer { color: #72807b; text-align: center; font-size: .72rem; padding: 0 20px 
   .source-choice { align-items: flex-start; padding: 13px 11px; }
   .calendar-bar { position: sticky; bottom: 8px; z-index: 5; box-shadow: 0 12px 30px rgba(13,68,60,.24); }
 }
+
+/* Keep the next action visible without a long school-list scroll. */
+[hidden] { display: none !important; }
+.hero__inner { padding: 28px 20px 68px; }
+h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+.view-nav { position: sticky; top: 0; z-index: 10; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 8px; margin-bottom: 16px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 4px 18px #163b3312; }
+.view-nav button { min-height: 48px; padding: 10px 6px; border: 0; border-radius: 9px; background: #f1f4f2; color: var(--green); font-weight: 800; font-size: .85rem; }
+.view-nav button[aria-pressed="true"] { background: var(--green); color: white; }
+.continue-button { position: sticky; bottom: 12px; width: 100%; min-height: 52px; margin-top: 20px; box-shadow: 0 5px 20px #24353125; }
+.continue-button:disabled { opacity: 1; background: #e8ece9; color: #586b64; cursor: not-allowed; }
+.school-results .choice-grid { max-height: 380px; overflow-y: auto; overscroll-behavior: contain; padding: 3px; }
+.source-choice { cursor: pointer; }
+.source-choice:focus-within { outline: 3px solid #e99b3d; outline-offset: 1px; }
+button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #e99b3d; outline-offset: 3px; }
+.selected-school-list button, .text-button, .event-picker, .date-shortcuts button { min-height: 44px; }
+.date-shortcuts { display: flex; gap: 8px; flex-wrap: wrap; }
+.date-shortcuts button { border: 1px solid #c5d5cf; border-radius: 10px; background: #fff; color: var(--green); padding: 8px 12px; font-size: .8rem; font-weight: 700; }
+.event-time { color: var(--green-dark); font-size: 1.1rem; font-weight: 800; margin: 10px 0 3px; }
+.event > time small { display: block; color: #63756e; font-size: .68rem; margin-top: 5px; }
+.event__body { min-width: 0; }
+.calendar-bar #action-count { display: inline; color: white; font-size: inherit; }
+.export-feedback { font-size: .85rem; line-height: 1.6; color: var(--green-dark); }
+@media (min-width: 700px) { .hero__inner { padding: 40px 32px 90px; } }
+@media (max-width: 430px) { .section-heading { align-items: flex-start; flex-direction: column; } .event { grid-template-columns: 58px 1fr; gap: 10px; } }

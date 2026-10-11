@@ -28,7 +28,7 @@
     "school_id": { "type": "string", "minLength": 1 },
     "title": { "type": "string", "minLength": 1 },
     "category": {
-      "enum": ["briefing", "open_school", "festival", "application", "exam", "result", "enrollment", "other"]
+      "enum": ["briefing", "admission_briefing", "open_school", "festival", "application", "exam", "result", "enrollment", "other"]
     },
     "starts_at": { "type": "string", "format": "date-or-datetime" },
     "ends_at": { "type": ["string", "null"], "format": "date-or-datetime" },
@@ -48,6 +48,7 @@
     "confidence": { "enum": ["low", "medium", "high"] },
     "content_hash": { "type": ["string", "null"] },
     "change_note": { "type": "string" },
+    "time_precision": { "enum": ["approximate"] },
     "change_type": { "enum": ["new", "changed", "cancelled"] }
   }
 }
